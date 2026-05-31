@@ -22,7 +22,7 @@
     "nvidia_driver": "#",
     "amd_driver": "#",
     "intel_driver": "#",
-    "build_guide": "#"
+    "build_guide": "/guide#build-guide"
   },
   "articles": {
     "instruction": {
