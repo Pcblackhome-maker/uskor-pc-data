@@ -17,7 +17,10 @@
     "ssd_240gb": "#",
     "ssd_btn": "#",
     "cureit": "#",
-    "gaming_ssd": "#"
+    "gaming_ssd": "#",
+    "nvidia_driver": "#",
+    "amd_driver": "#",
+    "intel_driver": "#"
   },
   "articles": {
     "instruction": {
@@ -132,8 +135,8 @@
           "text": "Перегрев приводит к троттлингу (снижению частот).\n\nРаз в полгода чистите ноутбук от пыли, используйте охлаждающую подставку. Мониторьте температуры с помощью HWMonitor или MSI Afterburner — если процессор выше 85°C, пора менять термопасту."
         },
         {
-          "strong": "4. Обновление драйверов и DirectX",
-          "text": "Установите GeForce Experience (NVIDIA) или Radeon Software (AMD) и включите автоматическое обновление драйверов.\n\nПроверьте, что установлена последняя версия DirectX (скачать с сайта Microsoft)."
+          "strong": "4. Обновление драйверов",
+          "text": "Устаревшие драйверы — частая причина низкой производительности. Скачайте последние версии с официальных сайтов:\n\n<ul><li><a href='https://www.nvidia.com/ru-ru/drivers/' target='_blank' rel='noopener' style='color:#ff6b35;'>NVIDIA (для GeForce)</a></li><li><a href='https://www.amd.com/ru/support' target='_blank' rel='noopener' style='color:#ff6b35;'>AMD (Radeon, Ryzen)</a></li><li><a href='https://www.intel.com/content/www/ru/ru/download-center/home.html' target='_blank' rel='noopener' style='color:#ff6b35;'>Intel (встроенная графика, чипсет)</a></li></ul>\n\nТакже установите GeForce Experience (NVIDIA) или Radeon Software (AMD) для автоматического обновления."
         }
       ],
       "donate_url": "https://boosty.to/igrip/donate",
@@ -145,6 +148,6 @@
     "title": "📩 Не помогло? Я помогу лично",
     "subtitle": "Опишите проблему — отвечу в течение дня. Первичная диагностика бесплатно. Если потребуется удалённая настройка, стоимость составит 500 ₽.",
     "form_action": "https://formspree.io/f/xgoqbbvl",
-    "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/your_telegram' style='color:#ff6b35;'>@your_telegram</a>"
+    "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/your_telegram' style='color:#ff6b35;'>@Nyy_tip_da</a>"
   }
 }
