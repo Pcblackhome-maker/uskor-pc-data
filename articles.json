@@ -172,7 +172,7 @@
       "advice": "💡 Боитесь ошибиться? Я подготовил платный гайд «Сборка ПК без ошибок» с подробными фото, чек-листом и типовыми ошибками новичков. Поддержите проект и получите эксклюзив!",
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Остались вопросы по сборке? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Напишите мне</a> — проконсультирую удалённо за 500 ₽.",
-      "product_btn": {"text": "Купить гайд «Сборка ПК без ошибок» (300 ₽)", "affiliate_key": "build_guide"}
+      "product_btn": {"text": "Купить гайд «Сборка ПК без ошибок» (500 ₽)", "affiliate_key": "build_guide"}
     }
   },
   "contact": {
