@@ -126,19 +126,19 @@
       "steps": [
         {
           "strong": "1. Настройки Windows для игр",
-          "text": "Включите «Игровой режим» (<code>Win + G</code> → Настройки).\n\nОтключите визуальные эффекты: «Свойства системы» → «Дополнительно» → «Быстродействие» → «Обеспечить наилучшее быстродействие».\n\nОтключите фоновые приложения: «Параметры» → «Конфиденциальность» → «Фоновые приложения»."
+          "text": "Включите «Игровой режим» (<code>Win + G</code> → Настройки).\n\nОтключите визуальные эффекты: «Свойства системы» → «Дополнительно» → «Быстродействие» → «Обеспечить наилучшее быстродействие».\n\nОтключите фоновые приложения: «Параметры» → «Конфиденциальность» → «Фоновые приложения».\n\nЭти простые шаги особенно заметны в требовательных новинках вроде <strong>Cyberpunk 2077</strong> или <strong>Alan Wake 2</strong> — лишние 5–10 кадров никогда не помешают."
         },
         {
           "strong": "2. Настройка видеокарты",
-          "text": "<strong>NVIDIA:</strong> Панель управления → «Регулировка настроек изображения» → «Производительность».\n\n<strong>AMD:</strong> Radeon Software → «Глобальные настройки графики» → «Производительность».\n\nОтключите вертикальную синхронизацию (VSync) в играх, если FPS низкий — это уменьшит задержку ввода."
+          "text": "<strong>NVIDIA:</strong> Панель управления → «Регулировка настроек изображения» → «Производительность».\n\n<strong>AMD:</strong> Radeon Software → «Глобальные настройки графики» → «Производительность».\n\nОтключите вертикальную синхронизацию (VSync) в играх, если FPS низкий — это уменьшит задержку ввода.\n\nСовет: для <strong>Hogwarts Legacy</strong> и других проектов на Unreal Engine 4/5 отключение VSync часто даёт наибольший прирост плавности."
         },
         {
           "strong": "3. Охлаждение и пыль",
-          "text": "Перегрев приводит к троттлингу (снижению частот).\n\nРаз в полгода чистите ноутбук от пыли, используйте охлаждающую подставку. Мониторьте температуры с помощью HWMonitor или MSI Afterburner — если процессор выше 85°C, пора менять термопасту."
+          "text": "Перегрев приводит к троттлингу (снижению частот).\n\nРаз в полгода чистите ноутбук от пыли, используйте охлаждающую подставку. Мониторьте температуры с помощью HWMonitor или MSI Afterburner — если процессор выше 85°C, пора менять термопасту.\n\nПомните: даже в <strong>Baldur's Gate 3</strong> при высоких настройках система может нагреваться так, что частоты падают на 15–20%."
         },
         {
           "strong": "4. Обновление драйверов",
-          "text": "Устаревшие драйверы — частая причина низкой производительности. Скачайте последние версии с официальных сайтов:\n\n<ul><li><a href='https://www.nvidia.com/ru-ru/drivers/' target='_blank' rel='noopener' style='color:#ff6b35;'>NVIDIA (для GeForce)</a></li><li><a href='https://www.amd.com/ru/support' target='_blank' rel='noopener' style='color:#ff6b35;'>AMD (Radeon, Ryzen)</a></li><li><a href='https://www.intel.com/content/www/ru/ru/download-center/home.html' target='_blank' rel='noopener' style='color:#ff6b35;'>Intel (встроенная графика, чипсет)</a></li></ul>\n\nТакже установите GeForce Experience (NVIDIA) или Radeon Software (AMD) для автоматического обновления."
+          "text": "Устаревшие драйверы — частая причина низкой производительности. Скачайте последние версии с официальных сайтов:\n\n<ul><li><a href='https://www.nvidia.com/ru-ru/drivers/' target='_blank' rel='noopener' style='color:#ff6b35;'>NVIDIA (для GeForce)</a></li><li><a href='https://www.amd.com/ru/support' target='_blank' rel='noopener' style='color:#ff6b35;'>AMD (Radeon, Ryzen)</a></li><li><a href='https://www.intel.com/content/www/ru/ru/download-center/home.html' target='_blank' rel='noopener' style='color:#ff6b35;'>Intel (встроенная графика, чипсет)</a></li></ul>\n\nТакже установите GeForce Experience (NVIDIA) или Radeon Software (AMD) для автоматического обновления. Это гарантирует, что свежий патч для <strong>Starfield</strong> или другой новинки не застанет вас врасплох."
         }
       ],
       "donate_url": "https://boosty.to/igrip/donate",
@@ -150,7 +150,7 @@
       "steps": [
         {
           "strong": "1. Подбор комплектующих",
-          "text": "Определите бюджет и задачи (офис, игры, монтаж). Основные компоненты:\n<ul><li>Процессор (CPU) и кулер</li><li>Материнская плата</li><li>Видеокарта (GPU) — если не встроенная</li><li>Оперативная память (RAM)</li><li>SSD/HDD накопитель</li><li>Блок питания</li><li>Корпус</li></ul>\n\nПроверьте совместимость на сайте производителя материнской платы или в сервисах вроде PCPartPicker."
+          "text": "Определите бюджет и задачи. Например:\n<ul><li><strong>Для киберспорта (CS2, Dota 2, Valorant):</strong> достаточно Ryzen 5 / Core i5 и видеокарты уровня RTX 3060.</li><li><strong>Для AAA-новинок (Cyberpunk 2077, Alan Wake 2, Starfield):</strong> желательно Ryzen 7 / Core i7 и видеокарта RTX 4070 или RX 7800 XT.</li></ul>\n\nПроверьте совместимость на сайте производителя материнской платы или в сервисах вроде PCPartPicker."
         },
         {
           "strong": "2. Установка процессора и кулера",
@@ -172,13 +172,13 @@
       "advice": "💡 Боитесь ошибиться? Я подготовил платный гайд «Сборка ПК без ошибок» с подробными фото, чек-листом и типовыми ошибками новичков. Поддержите проект и получите эксклюзив!",
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Остались вопросы по сборке? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Напишите мне</a> — проконсультирую удалённо за 500 ₽.",
-      "product_btn": {"text": "Купить гайд «Сборка ПК без ошибок» (500 ₽)", "affiliate_key": "build_guide"}
+      "product_btn": {"text": "Купить гайд «Сборка ПК без ошибок» (300 ₽)", "affiliate_key": "build_guide"}
     }
   },
   "contact": {
     "title": "📩 Не помогло? Я помогу лично",
     "subtitle": "Опишите проблему — отвечу в течение дня. Первичная диагностика бесплатно. Если потребуется удалённая настройка, стоимость составит 500 ₽.",
     "form_action": "https://formspree.io/f/xgoqbbvl",
-    "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/your_telegram' style='color:#ff6b35;'>@Nyy_tip_da</a>"
+    "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/your_telegram' style='color:#ff6b35;'>@your_telegram</a>"
   }
 }
