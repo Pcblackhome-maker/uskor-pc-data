@@ -12,12 +12,11 @@
     {"id": "build", "icon": "🔧", "label": "Сборка ПК"}
   ],
   "affiliate": {
-    "ccleaner": "#",
     "kaspersky": "#",
     "ashampoo": "#",
     "aliexpress_ssd": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
     "aliexpress_components": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
-    "joom_ssd": "https://aflink.ru/g/18vhi6r5cvf10c2e97fc79deb39b46/?erid=5jtCeReNwxHpfQTFuc3CS5J&ulp=https%3A%2F%2Fwww.joom.ru%2Fru%2Fsearch%2Fq.%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%82%D1%83%D1%8E%D1%89%D0%B8%D0%B5%2520%D0%B4%D0%BB%D1%8F%2520%D0%BF%D0%BA",
+    "joom_fun": "https://aflink.ru/g/18vhi6r5cvf10c2e97fc79deb39b46/?erid=5jtCeReNwxHpfQTFuc3CS5J",
     "ssd_btn": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
     "gaming_ssd": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
     "cureit": "#",
@@ -49,15 +48,8 @@
     },
     "programs": {
       "title": "⚡ Проверенные программы и комплектующие",
-      "intro": "Я собрал только те инструменты, которые сам использую. Они безопасны, не содержат рекламы и действительно ускоряют систему. А также подобрал надёжные магазины, где можно купить комплектующие.",
+      "intro": "Я собрал только те инструменты, которые сам использую. Они безопасны, не содержат рекламы и действительно ускоряют систему.",
       "table": [
-        {
-          "program": "CCleaner Professional",
-          "desc": "Глубокая очистка реестра, удаление временных файлов, управление автозагрузкой.",
-          "price": "Бесплатный пробный период",
-          "affiliate_key": "ccleaner",
-          "btn_text": "Скачать"
-        },
         {
           "program": "Kaspersky Antivirus",
           "desc": "Защита от вирусов и шпионского ПО.",
@@ -80,37 +72,25 @@
           "btn_text": "Смотреть все"
         },
         {
-          "program": "SSD и электроника на Joom",
-          "desc": "Ещё один проверенный маркетплейс с хорошими скидками.",
-          "price": "От 1300 ₽",
-          "affiliate_key": "joom_ssd",
-          "btn_text": "Найти на Joom"
+          "program": "🎮 Приколюхи для вашего ПК",
+          "desc": "Необычные гаджеты, аксессуары и полезные мелочи для компьютера на Joom.",
+          "price": "От 300 ₽",
+          "affiliate_key": "joom_fun",
+          "btn_text": "Посмотреть на Joom"
         }
       ],
       "disclaimer": "* Я получаю небольшую комиссию с продаж, но это не увеличивает вашу цену. Ссылки ведут на проверенные магазины.",
-      "recommendation": "✨ Начните с бесплатного CCleaner, чтобы почистить систему. Если нужна комплексная защита — Kaspersky. А для апгрейда железа посмотрите подборки на AliExpress и Joom.",
+      "recommendation": "✨ Для защиты системы рекомендую Kaspersky. А для апгрейда железа посмотрите подборки на AliExpress и Joom.",
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу."
     },
     "ssd": {
       "title": "🖥️ Как выбрать SSD, чтобы ноутбук летал",
       "steps": [
-        {
-          "strong": "1. Тип памяти: QLC, TLC или MLC?",
-          "text": "Для повседневных задач и игр выбирайте <strong>TLC</strong> — надёжный и быстрый."
-        },
-        {
-          "strong": "2. Объём: какой минимальный?",
-          "text": "<strong>240 ГБ</strong> — достаточный минимум для системы и основных программ. Для игр и хранения видео/фото лучше брать от 500 ГБ."
-        },
-        {
-          "strong": "3. Форм-фактор: 2.5 дюйма или M.2?",
-          "text": "<strong>M.2</strong> — компактная плата, скорость до 3500 МБ/с. <strong>2.5\" SATA</strong> совместим со старыми моделями."
-        },
-        {
-          "strong": "4. Где купить недорого?",
-          "text": "Я рекомендую AliExpress и Joom — цены ниже, чем в рознице, а выбор огромный. Ниже кнопка для перехода."
-        }
+        {"strong": "1. Тип памяти: QLC, TLC или MLC?", "text": "Для повседневных задач и игр выбирайте <strong>TLC</strong> — надёжный и быстрый."},
+        {"strong": "2. Объём: какой минимальный?", "text": "<strong>240 ГБ</strong> — достаточный минимум для системы и основных программ. Для игр и хранения видео/фото лучше брать от 500 ГБ."},
+        {"strong": "3. Форм-фактор: 2.5 дюйма или M.2?", "text": "<strong>M.2</strong> — компактная плата, скорость до 3500 МБ/с. <strong>2.5\" SATA</strong> совместим со старыми моделями."},
+        {"strong": "4. Где купить недорого?", "text": "Я рекомендую AliExpress и Joom — цены ниже, чем в рознице, а выбор огромный. Ниже кнопка для перехода."}
       ],
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу.",
@@ -119,18 +99,9 @@
     "virus": {
       "title": "🛡️ Чистка от вирусов: возвращаем производительность",
       "steps": [
-        {
-          "strong": "1. Проверка встроенными средствами",
-          "text": "Запустите «Безопасность Windows» и выполните полное сканирование."
-        },
-        {
-          "strong": "2. Безопасный режим и антивирусные сканеры",
-          "text": "Загрузитесь в безопасном режиме и запустите Dr.Web CureIt! или Kaspersky."
-        },
-        {
-          "strong": "3. Защита в реальном времени",
-          "text": "Установите надёжный антивирус, например <strong>Kaspersky</strong> (пробный период 30 дней)."
-        }
+        {"strong": "1. Проверка встроенными средствами", "text": "Запустите «Безопасность Windows» и выполните полное сканирование."},
+        {"strong": "2. Безопасный режим и антивирусные сканеры", "text": "Загрузитесь в безопасном режиме и запустите Dr.Web CureIt! или Kaspersky."},
+        {"strong": "3. Защита в реальном времени", "text": "Установите надёжный антивирус, например <strong>Kaspersky</strong> (пробный период 30 дней)."}
       ],
       "warning": "⚠️ Никогда не устанавливайте два постоянных антивируса одновременно.",
       "donate_url": "https://boosty.to/igrip/donate",
@@ -140,22 +111,10 @@
     "gaming": {
       "title": "🎮 Максимальный FPS без лагов",
       "steps": [
-        {
-          "strong": "1. Настройки Windows для игр",
-          "text": "Включите «Игровой режим», отключите визуальные эффекты и фоновые приложения."
-        },
-        {
-          "strong": "2. Настройка видеокарты",
-          "text": "NVIDIA: Панель управления → «Регулировка настроек изображения» → «Производительность». AMD: Radeon Software → «Глобальные настройки графики» → «Производительность»."
-        },
-        {
-          "strong": "3. Охлаждение и пыль",
-          "text": "Чистите ноутбук раз в полгода, используйте охлаждающую подставку."
-        },
-        {
-          "strong": "4. Обновление драйверов",
-          "text": "Скачайте свежие драйверы с официальных сайтов NVIDIA, AMD или Intel."
-        }
+        {"strong": "1. Настройки Windows для игр", "text": "Включите «Игровой режим», отключите визуальные эффекты и фоновые приложения."},
+        {"strong": "2. Настройка видеокарты", "text": "NVIDIA: Панель управления → «Регулировка настроек изображения» → «Производительность». AMD: Radeon Software → «Глобальные настройки графики» → «Производительность»."},
+        {"strong": "3. Охлаждение и пыль", "text": "Чистите ноутбук раз в полгода, используйте охлаждающую подставку."},
+        {"strong": "4. Обновление драйверов", "text": "Скачайте свежие драйверы с официальных сайтов NVIDIA, AMD или Intel."}
       ],
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу.",
@@ -164,26 +123,11 @@
     "build": {
       "title": "🔧 Как собрать ПК самостоятельно",
       "steps": [
-        {
-          "strong": "1. Подбор комплектующих",
-          "text": "Определите бюджет и задачи. Для киберспорта подойдёт Ryzen 5 / Core i5 и RTX 3060. Для AAA-новинок — Ryzen 7 / Core i7 и RTX 4070 или RX 7800 XT."
-        },
-        {
-          "strong": "2. Установка процессора и кулера",
-          "text": "Откройте сокет, совместите ключи и опустите процессор. Нанесите термопасту и установите кулер."
-        },
-        {
-          "strong": "3. Оперативная память и SSD",
-          "text": "Вставьте планки RAM в слоты до щелчка. SSD M.2 вставляется под углом и фиксируется винтом."
-        },
-        {
-          "strong": "4. Видеокарта и блок питания",
-          "text": "Видеокарта вставляется в верхний PCIe x16 слот. Блок питания закрепите в корпусе и подключите кабели."
-        },
-        {
-          "strong": "5. Первый запуск и установка Windows",
-          "text": "Подключите монитор, клавиатуру, мышь. Включите питание — должна появиться BIOS. Установите Windows с флешки."
-        }
+        {"strong": "1. Подбор комплектующих", "text": "Определите бюджет и задачи. Для киберспорта подойдёт Ryzen 5 / Core i5 и RTX 3060. Для AAA-новинок — Ryzen 7 / Core i7 и RTX 4070 или RX 7800 XT."},
+        {"strong": "2. Установка процессора и кулера", "text": "Откройте сокет, совместите ключи и опустите процессор. Нанесите термопасту и установите кулер."},
+        {"strong": "3. Оперативная память и SSD", "text": "Вставьте планки RAM в слоты до щелчка. SSD M.2 вставляется под углом и фиксируется винтом."},
+        {"strong": "4. Видеокарта и блок питания", "text": "Видеокарта вставляется в верхний PCIe x16 слот. Блок питания закрепите в корпусе и подключите кабели."},
+        {"strong": "5. Первый запуск и установка Windows", "text": "Подключите монитор, клавиатуру, мышь. Включите питание — должна появиться BIOS. Установите Windows с флешки."}
       ],
       "advice": "💡 Боитесь ошибиться? Я подготовил платный гайд «Сборка ПК без ошибок» с подробными фото и чек-листом.",
       "donate_url": "https://boosty.to/igrip/donate",
