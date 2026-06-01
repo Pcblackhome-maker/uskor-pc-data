@@ -15,12 +15,12 @@
     "ccleaner": "#",
     "kaspersky": "#",
     "ashampoo": "#",
-    "aliexpress_ssd": "#",
-    "aliexpress_components": "#",
-    "joom_ssd": "#",
-    "ssd_btn": "#",
+    "aliexpress_ssd": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
+    "aliexpress_components": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
+    "joom_ssd": "https://aflink.ru/g/18vhi6r5cvf10c2e97fc79deb39b46/?erid=5jtCeReNwxHpfQTFuc3CS5J&ulp=https%3A%2F%2Fwww.joom.ru%2Fru%2Fsearch%2Fq.%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%82%D1%83%D1%8E%D1%89%D0%B8%D0%B5%2520%D0%B4%D0%BB%D1%8F%2520%D0%BF%D0%BA",
+    "ssd_btn": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
+    "gaming_ssd": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
     "cureit": "#",
-    "gaming_ssd": "#",
     "nvidia_driver": "#",
     "amd_driver": "#",
     "intel_driver": "#",
@@ -114,7 +114,7 @@
       ],
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу.",
-      "product_btn": {"text": "Посмотреть SSD на AliExpress", "affiliate_key": "aliexpress_ssd"}
+      "product_btn": {"text": "Посмотреть SSD на AliExpress", "affiliate_key": "ssd_btn"}
     },
     "virus": {
       "title": "🛡️ Чистка от вирусов: возвращаем производительность",
@@ -159,7 +159,7 @@
       ],
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу.",
-      "product_btn": {"text": "Игровые SSD на AliExpress", "affiliate_key": "aliexpress_ssd"}
+      "product_btn": {"text": "Игровые SSD на AliExpress", "affiliate_key": "gaming_ssd"}
     },
     "build": {
       "title": "🔧 Как собрать ПК самостоятельно",
