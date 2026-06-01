@@ -1,115 +1,74 @@
 {
-  "hero": {
-    "title": "🚀 Ускорь свой ПК без мастера",
-    "subtitle": "Выбери, что тебе нужно сегодня. Все советы проверены на сотнях ноутбуков и ПК."
-  },
+  "hero": { "title": "🚀 Ускорь свой ПК без мастера", "subtitle": "Выбери, что тебе нужно сегодня. Все советы проверены на сотнях ноутбуков и ПК." },
   "buttons": [
     {"id": "instruction", "icon": "📋", "label": "Пошаговая инструкция"},
     {"id": "programs", "icon": "⚡", "label": "Программы и железо"},
     {"id": "ssd", "icon": "🖥️", "label": "Как выбрать SSD"},
+    {"id": "ssd_hdd", "icon": "📊", "label": "Сравнение SSD и HDD"},
+    {"id": "gaming_hw", "icon": "🎯", "label": "Рекомендуемое железо для игр"},
     {"id": "virus", "icon": "🛡️", "label": "Чистка от вирусов"},
     {"id": "gaming", "icon": "🎮", "label": "Ускорение для игр"},
     {"id": "build", "icon": "🔧", "label": "Сборка ПК"}
   ],
   "affiliate": {
     "kaspersky": "#",
-    "aliexpress_ssd": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
-    "aliexpress_components": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
+    "aliexpress_ssd": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy",
+    "aliexpress_components": "#",
     "joom_fun": "https://aflink.ru/g/18vhi6r5cvf10c2e97fc79deb39b46/?erid=5jtCeReNwxHpfQTFuc3CS5J",
-    "ssd_btn": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy%26page%3D1%26searchInfo%3DA8NmbsJENHkkNDzfiQX6gV0nkxJHsBrRFWFGTLzr9Q6Ft8aOMpqe4e492S1W5%252FKx%252B%252FK%252B5HH0NAqhVvfygYMh9tqqq0vk7KgAv2B7mCEQctTowFjb7Fn5vNO4X%252FFbNYzWhNp9rrAFLf2M4HaLFz47D2k1b1hxnGypdMfRokpZfkdTh9Sh%252BVYysMGJ6w%253D%253D",
-    "aliexpress_ram": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dddr4%26g%3Dy",
-    "aliexpress_coolers": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dcooler%2Bfor%2Bpc%26g%3Dy",
-    "aliexpress_gaming_accessories": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dgaming%2Baccessories%26g%3Dy",
-    "cureit": "#",
-    "nvidia_driver": "#",
-    "amd_driver": "#",
-    "intel_driver": "#",
+    "aliexpress_ryzen5": "#",
+    "aliexpress_i5": "#",
+    "aliexpress_rtx3060": "#",
+    "aliexpress_rx6600": "#",
+    "aliexpress_ram1": "#",
+    "aliexpress_ram2": "#",
+    "aliexpress_ssd_nvme": "#",
+    "aliexpress_ssd_samsung": "#",
     "build_guide": "/guide#build-guide"
   },
   "articles": {
-    "instruction": { ... }, // без изменений, только help_text обновлён
+    "instruction": { ... },
     "programs": {
       "title": "⚡ Программы и железо",
       "intro": "Здесь собраны проверенные программы и комплектующие, которые действительно помогают ускорить компьютер. Первая таблица – бесплатные и пробные инструменты, вторая – железо с лучшими ценами.",
       "software_table": [
-        {
-          "program": "Kaspersky Antivirus",
-          "desc": "Надёжная защита + ускорение системы. Пробный период 30 дней.",
-          "price": "Пробный период 30 дней",
-          "affiliate_key": "kaspersky",
-          "btn_text": "Попробовать"
-        },
-        {
-          "program": "Malwarebytes AdwCleaner",
-          "desc": "Удаляет рекламное ПО и тулбары. Бесплатно.",
-          "price": "Бесплатно",
-          "link": "https://ru.malwarebytes.com/adwcleaner/",
-          "btn_text": "Скачать"
-        },
-        {
-          "program": "CPU‑Z",
-          "desc": "Показывает подробную информацию о процессоре, памяти, материнской плате. Бесплатно.",
-          "price": "Бесплатно",
-          "link": "https://www.cpuid.com/softwares/cpu-z.html",
-          "btn_text": "Скачать"
-        }
+        {"program": "Kaspersky Antivirus", "desc": "Надёжная защита + ускорение системы. Пробный период 30 дней.", "price": "Пробный период 30 дней", "affiliate_key": "kaspersky", "btn_text": "Попробовать"},
+        {"program": "Malwarebytes AdwCleaner", "desc": "Удаляет рекламное ПО и тулбары. Бесплатно.", "price": "Бесплатно", "link": "https://ru.malwarebytes.com/adwcleaner/", "btn_text": "Скачать"},
+        {"program": "CPU‑Z", "desc": "Показывает подробную информацию о процессоре, памяти, материнской плате. Бесплатно.", "price": "Бесплатно", "link": "https://www.cpuid.com/softwares/cpu-z.html", "btn_text": "Скачать"}
       ],
       "hardware_table": [
-        {
-          "program": "SSD‑накопитель",
-          "desc": "Надёжные SSD по выгодной цене. Перед заказом изучите продавца.",
-          "price": "От 1500 ₽",
-          "affiliate_key": "aliexpress_ssd",
-          "btn_text": "Выбрать на AliExpress"
-        },
-        {
-          "program": "Оперативная память",
-          "desc": "DDR4 планки от проверенных брендов.",
-          "price": "От 2000 ₽",
-          "affiliate_key": "aliexpress_ram",
-          "btn_text": "Найти на AliExpress"
-        },
-        {
-          "program": "Кулеры и охлаждение",
-          "desc": "Кулеры, термопаста, вентиляторы.",
-          "price": "От 500 ₽",
-          "affiliate_key": "aliexpress_coolers",
-          "btn_text": "Смотреть"
-        },
-        {
-          "program": "Комплектующие для ПК",
-          "desc": "Видеокарты, процессоры, материнские платы.",
-          "price": "Разные",
-          "affiliate_key": "aliexpress_components",
-          "btn_text": "Смотреть все"
-        },
-        {
-          "program": "🎮 Приколюхи для ПК",
-          "desc": "Гаджеты, аксессуары, украшения на Joom.",
-          "price": "От 300 ₽",
-          "affiliate_key": "joom_fun",
-          "btn_text": "Посмотреть на Joom"
-        }
+        {"program": "Процессор Ryzen 5 5600", "desc": "6 ядер, 12 потоков, AM4", "price": "≈9000 ₽", "affiliate_key": "aliexpress_ryzen5", "btn_text": "Найти"},
+        {"program": "Процессор Core i5-12400F", "desc": "6 ядер, 12 потоков, LGA1700", "price": "≈10500 ₽", "affiliate_key": "aliexpress_i5", "btn_text": "Найти"},
+        {"program": "Видеокарта RTX 3060 12GB", "desc": "Для 1080p игр", "price": "≈25000 ₽", "affiliate_key": "aliexpress_rtx3060", "btn_text": "Найти"},
+        {"program": "Видеокарта RX 6600", "desc": "Аналог RTX 3060", "price": "≈20000 ₽", "affiliate_key": "aliexpress_rx6600", "btn_text": "Найти"},
+        {"program": "Память Kingston Fury 16GB DDR4 3200MHz", "desc": "2x8 ГБ, CL16", "price": "≈3500 ₽", "affiliate_key": "aliexpress_ram1", "btn_text": "Найти"},
+        {"program": "Память Corsair Vengeance LPX 16GB DDR4 3200MHz", "desc": "2x8 ГБ, CL16", "price": "≈3800 ₽", "affiliate_key": "aliexpress_ram2", "btn_text": "Найти"},
+        {"program": "SSD Kingston NV2 500GB NVMe", "desc": "Чтение 3500 МБ/с", "price": "≈2500 ₽", "affiliate_key": "aliexpress_ssd_nvme", "btn_text": "Найти"},
+        {"program": "SSD Samsung 970 EVO Plus 500GB", "desc": "Надёжный TLC", "price": "≈4500 ₽", "affiliate_key": "aliexpress_ssd_samsung", "btn_text": "Найти"}
       ],
-      "disclaimer": "* Я получаю небольшую комиссию с покупок, но для вас цена остаётся прежней.",
       "donate_url": "https://boosty.to/igrip/donate",
       "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу."
     },
-    "ssd": { ... }, // без изменений, help_text обновлён
-    "virus": { ... }, // без изменений
-    "gaming": {
-      "title": "🎮 Максимальный FPS без лагов",
-      "steps": [ ... ], // шаги без изменений
+    "gaming_hw": {
+      "title": "🎯 Рекомендуемое железо для игр",
+      "intro": "Чтобы не переплачивать и не промахнуться с выбором, вот проверенные сборки для разных разрешений и бюджетов.",
+      "table": [
+        {"parameter": "1080p (Full HD)", "ssd": "Ryzen 5 5600 + RTX 3060 / RX 6600", "hdd": "16 ГБ DDR4, SSD NVMe 500 ГБ"},
+        {"parameter": "1440p (Quad HD)", "ssd": "Ryzen 7 5700X / Core i5-12600K + RTX 4070 / RX 7800 XT", "hdd": "32 ГБ DDR4, SSD NVMe 1 ТБ"},
+        {"parameter": "4K Ultra HD", "ssd": "Ryzen 7 7800X3D / Core i7-13700K + RTX 4080 / RX 7900 XTX", "hdd": "32 ГБ DDR5, SSD NVMe 2 ТБ"}
+      ],
+      "steps": [
+        {"strong": "На что обратить внимание при покупке на AliExpress", "text": "Изучите рейтинг продавца (не ниже 95%), читайте отзывы с фото, проверяйте гарантийные обязательства. Не гонитесь за подозрительно низкой ценой – лучше немного переплатить за надёжность."},
+        {"strong": "Совместимость компонентов", "text": "Перед заказом убедитесь, что процессор подходит к материнской плате (сокет AM4/LGA1700), а блок питания выдаёт достаточно мощности для видеокарты. Воспользуйтесь онлайн-калькуляторами или таблицами совместимости."}
+      ],
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу.",
-      "product_btn": {"text": "🎮 Игровые аксессуары на AliExpress", "affiliate_key": "aliexpress_gaming_accessories"}
-    },
-    "build": { ... }, // без изменений
-    "contact": {
-      "title": "📩 Не нашли решение? Напишите мне",
-      "subtitle": "Опишите вашу проблему — я обязательно отвечу и постараюсь помочь.",
-      "form_action": "https://formspree.io/f/xgoqbbvl",
-      "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/Nyy_tip_da' style='color:#ff6b35;'>@Nyy_tip_da</a>"
+      "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу."
     }
+    // ... остальные статьи без изменений
+  },
+  "contact": {
+    "title": "📩 Не нашли решение? Напишите мне",
+    "subtitle": "Опишите вашу проблему — я обязательно отвечу и постараюсь помочь.",
+    "form_action": "https://formspree.io/f/xgoqbbvl",
+    "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/Nyy_tip_da' style='color:#ff6b35;'>@Nyy_tip_da</a>"
   }
 }
