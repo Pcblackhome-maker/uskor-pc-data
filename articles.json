@@ -1,74 +1,76 @@
 {
-  "hero": { "title": "🚀 Ускорь свой ПК без мастера", "subtitle": "Выбери, что тебе нужно сегодня. Все советы проверены на сотнях ноутбуков и ПК." },
+  "hero": {
+    "title": "🚀 Ускорь свой ПК без мастера",
+    "subtitle": "Сборка, настройка, игры — всё, чтобы ваш компьютер летал"
+  },
   "buttons": [
     {"id": "instruction", "icon": "📋", "label": "Пошаговая инструкция"},
     {"id": "programs", "icon": "⚡", "label": "Программы и железо"},
     {"id": "ssd", "icon": "🖥️", "label": "Как выбрать SSD"},
-    {"id": "ssd_hdd", "icon": "📊", "label": "Сравнение SSD и HDD"},
-    {"id": "gaming_hw", "icon": "🎯", "label": "Рекомендуемое железо для игр"},
     {"id": "virus", "icon": "🛡️", "label": "Чистка от вирусов"},
     {"id": "gaming", "icon": "🎮", "label": "Ускорение для игр"},
-    {"id": "build", "icon": "🔧", "label": "Сборка ПК"}
+    {"id": "build", "icon": "🔧", "label": "Сборка ПК"},
+    {"id": "hardware", "icon": "🖥️", "label": "Железо и FPS"},
+    {"id": "win11", "icon": "🪟", "label": "Windows 11"}
   ],
   "affiliate": {
+    "ccleaner": "#",
     "kaspersky": "#",
-    "aliexpress_ssd": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/?ulp=https%3A%2F%2Faliexpress.ru%2Fwholesale%3FSearchText%3Dssd%26g%3Dy",
-    "aliexpress_components": "#",
-    "joom_fun": "https://aflink.ru/g/18vhi6r5cvf10c2e97fc79deb39b46/?erid=5jtCeReNwxHpfQTFuc3CS5J",
-    "aliexpress_ryzen5": "#",
-    "aliexpress_i5": "#",
-    "aliexpress_rtx3060": "#",
-    "aliexpress_rx6600": "#",
-    "aliexpress_ram1": "#",
-    "aliexpress_ram2": "#",
-    "aliexpress_ssd_nvme": "#",
-    "aliexpress_ssd_samsung": "#",
+    "ashampoo": "#",
+    "ssd_240gb": "#",
+    "ssd_btn": "#",
+    "cureit": "#",
+    "gaming_ssd": "#",
+    "nvidia_driver": "#",
+    "amd_driver": "#",
+    "intel_driver": "#",
     "build_guide": "/guide#build-guide"
   },
   "articles": {
-    "instruction": { ... },
-    "programs": {
-      "title": "⚡ Программы и железо",
-      "intro": "Здесь собраны проверенные программы и комплектующие, которые действительно помогают ускорить компьютер. Первая таблица – бесплатные и пробные инструменты, вторая – железо с лучшими ценами.",
-      "software_table": [
-        {"program": "Kaspersky Antivirus", "desc": "Надёжная защита + ускорение системы. Пробный период 30 дней.", "price": "Пробный период 30 дней", "affiliate_key": "kaspersky", "btn_text": "Попробовать"},
-        {"program": "Malwarebytes AdwCleaner", "desc": "Удаляет рекламное ПО и тулбары. Бесплатно.", "price": "Бесплатно", "link": "https://ru.malwarebytes.com/adwcleaner/", "btn_text": "Скачать"},
-        {"program": "CPU‑Z", "desc": "Показывает подробную информацию о процессоре, памяти, материнской плате. Бесплатно.", "price": "Бесплатно", "link": "https://www.cpuid.com/softwares/cpu-z.html", "btn_text": "Скачать"}
-      ],
-      "hardware_table": [
-        {"program": "Процессор Ryzen 5 5600", "desc": "6 ядер, 12 потоков, AM4", "price": "≈9000 ₽", "affiliate_key": "aliexpress_ryzen5", "btn_text": "Найти"},
-        {"program": "Процессор Core i5-12400F", "desc": "6 ядер, 12 потоков, LGA1700", "price": "≈10500 ₽", "affiliate_key": "aliexpress_i5", "btn_text": "Найти"},
-        {"program": "Видеокарта RTX 3060 12GB", "desc": "Для 1080p игр", "price": "≈25000 ₽", "affiliate_key": "aliexpress_rtx3060", "btn_text": "Найти"},
-        {"program": "Видеокарта RX 6600", "desc": "Аналог RTX 3060", "price": "≈20000 ₽", "affiliate_key": "aliexpress_rx6600", "btn_text": "Найти"},
-        {"program": "Память Kingston Fury 16GB DDR4 3200MHz", "desc": "2x8 ГБ, CL16", "price": "≈3500 ₽", "affiliate_key": "aliexpress_ram1", "btn_text": "Найти"},
-        {"program": "Память Corsair Vengeance LPX 16GB DDR4 3200MHz", "desc": "2x8 ГБ, CL16", "price": "≈3800 ₽", "affiliate_key": "aliexpress_ram2", "btn_text": "Найти"},
-        {"program": "SSD Kingston NV2 500GB NVMe", "desc": "Чтение 3500 МБ/с", "price": "≈2500 ₽", "affiliate_key": "aliexpress_ssd_nvme", "btn_text": "Найти"},
-        {"program": "SSD Samsung 970 EVO Plus 500GB", "desc": "Надёжный TLC", "price": "≈4500 ₽", "affiliate_key": "aliexpress_ssd_samsung", "btn_text": "Найти"}
-      ],
-      "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу."
-    },
-    "gaming_hw": {
-      "title": "🎯 Рекомендуемое железо для игр",
-      "intro": "Чтобы не переплачивать и не промахнуться с выбором, вот проверенные сборки для разных разрешений и бюджетов.",
+    "instruction": { ... }, // без изменений
+    "programs": { ... },    // без изменений
+    "ssd": { ... },         // без изменений
+    "virus": { ... },       // без изменений
+    "gaming": { ... },      // без изменений
+    "build": { ... },       // без изменений
+    "hardware": {
+      "title": "🖥️ Рекомендованное железо и FPS в играх (2026)",
+      "intro": "Ниже — актуальные сборки и ожидаемый FPS в популярных играх. Все конфигурации проверены, цены указаны на старт 2026 года.",
       "table": [
-        {"parameter": "1080p (Full HD)", "ssd": "Ryzen 5 5600 + RTX 3060 / RX 6600", "hdd": "16 ГБ DDR4, SSD NVMe 500 ГБ"},
-        {"parameter": "1440p (Quad HD)", "ssd": "Ryzen 7 5700X / Core i5-12600K + RTX 4070 / RX 7800 XT", "hdd": "32 ГБ DDR4, SSD NVMe 1 ТБ"},
-        {"parameter": "4K Ultra HD", "ssd": "Ryzen 7 7800X3D / Core i7-13700K + RTX 4080 / RX 7900 XTX", "hdd": "32 ГБ DDR5, SSD NVMe 2 ТБ"}
+        {"program": "Ryzen 5 5600 + RTX 3060 12GB", "desc": "Киберспорт, комфортная игра в 1080p. CS2, Dota 2, Valorant, Genshin Impact — 150+ FPS на высоких.", "price": "≈ 60 000 ₽", "affiliate_key": "", "btn_text": "Примерная цена"},
+        {"program": "Ryzen 5 7500F + RTX 4060 Ti 8GB", "desc": "Уверенные 60 FPS в AAA‑проектах (Cyberpunk 2077, Alan Wake 2, Hogwarts Legacy) на высоких в 1080p.", "price": "≈ 85 000 ₽", "affiliate_key": "", "btn_text": "Примерная цена"},
+        {"program": "Core i5‑14600KF + RTX 4070 Super 12GB", "desc": "Стабильные 60+ FPS в 1440p в любых новинках. Трассировка лучей, высокие настройки.", "price": "≈ 140 000 ₽", "affiliate_key": "", "btn_text": "Примерная цена"},
+        {"program": "Ryzen 7 7800X3D + RTX 4080 Super 16GB", "desc": "4K‑гейминг в Alan Wake 2, Cyberpunk 2077, Starfield. FPS 80–100 на ультра‑пресетах.", "price": "≈ 220 000 ₽", "affiliate_key": "", "btn_text": "Примерная цена"}
       ],
-      "steps": [
-        {"strong": "На что обратить внимание при покупке на AliExpress", "text": "Изучите рейтинг продавца (не ниже 95%), читайте отзывы с фото, проверяйте гарантийные обязательства. Не гонитесь за подозрительно низкой ценой – лучше немного переплатить за надёжность."},
-        {"strong": "Совместимость компонентов", "text": "Перед заказом убедитесь, что процессор подходит к материнской плате (сокет AM4/LGA1700), а блок питания выдаёт достаточно мощности для видеокарты. Воспользуйтесь онлайн-калькуляторами или таблицами совместимости."}
-      ],
+      "disclaimer": "* Цены ориентировочные. Для точной конфигурации лучше воспользоваться консультацией.",
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Не нашли решение? Опишите ситуацию через форму обратной связи – я отвечу, как только смогу."
+      "help_text": "Остались вопросы по сборке? Оставьте заявку ниже — помогу с выбором."
+    },
+    "win11": {
+      "title": "🪟 Как ускорить Windows 11 за 15 минут",
+      "steps": [
+        {
+          "strong": "1. Отключите ненужные визуальные эффекты",
+          "text": "Windows 11 славится анимациями и прозрачностью, которые нагружают слабые ПК.\n\n<strong>Как сделать:</strong>\n<ul><li>Нажмите <code>Win + R</code>, введите <code>sysdm.cpl</code></li><li>Перейдите на вкладку «Дополнительно» → «Быстродействие»</li><li>Выберите «Обеспечить наилучшее быстродействие» или вручную оставьте только «Сглаживание шрифтов»</li></ul>\n\nСразу станет легче, особенно на ноутбуках с интегрированной графикой."
+        },
+        {
+          "strong": "2. Уберите фоновые приложения и виджеты",
+          "text": "<ul><li>Откройте «Параметры» → «Персонализация» → «Панель задач» и отключите «Виджеты».</li><li>В «Параметры» → «Конфиденциальность и защита» → «Фоновые приложения» отключите всё, чем не пользуетесь.</li></ul>\n\nВиджеты и фоновые приложения могут потреблять до 10% ресурсов процессора."
+        },
+        {
+          "strong": "3. Настройте автозагрузку и службы",
+          "text": "<strong>Автозагрузка:</strong> <code>Ctrl + Shift + Esc</code> → вкладка «Автозагрузка». Отключите всё лишнее.\n\n<strong>Службы:</strong> нажмите <code>Win + R</code>, введите <code>services.msc</code>. Отключите или переведите в ручной режим:\n<ul><li>SysMain (Superfetch) — если стоит SSD</li><li>Windows Search — если редко ищете файлы</li><li>Connected User Experiences and Telemetry</li></ul>\n\nПерезагрузите ПК."
+        }
+      ],
+      "advice": "💡 После этих шагов система станет заметно отзывчивее. Если используете SSD, отключите дефрагментацию (Windows сама делает TRIM).",
+      "donate_url": "https://boosty.to/igrip/donate",
+      "help_text": "Если ваш Windows 11 всё ещё тормозит, оставьте заявку ниже — я помогу удалённо."
     }
-    // ... остальные статьи без изменений
   },
   "contact": {
-    "title": "📩 Не нашли решение? Напишите мне",
-    "subtitle": "Опишите вашу проблему — я обязательно отвечу и постараюсь помочь.",
+    "title": "📩 Не помогло? Я помогу лично",
+    "subtitle": "Опишите проблему — отвечу в течение дня. Первичная диагностика бесплатно. Если потребуется удалённая настройка, стоимость составит 500 ₽.",
     "form_action": "https://formspree.io/f/xgoqbbvl",
-    "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/Nyy_tip_da' style='color:#ff6b35;'>@Nyy_tip_da</a>"
+    "telegram_text": "Или воспользуйтесь формой обратной связи на сайте."
   }
 }
