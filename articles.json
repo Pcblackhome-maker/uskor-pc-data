@@ -43,7 +43,7 @@
       ],
       "advice": "💡 Если после всех шагов компьютер всё равно тормозит, вероятно, не хватает оперативной памяти или установлен старый HDD. Обратите внимание на статью «Как выбрать SSD» — замена диска даёт самый заметный прирост скорости.",
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Если инструкция не решила проблему, <a href='#' class='help-link' onclick='scrollToForm(); return false;'>оставь заявку ниже</a> — помогу удалённо за 500 ₽."
+      "help_text": "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично."
     },
     "programs": {
       "title": "⚡ Проверенные программы и комплектующие",
@@ -74,7 +74,7 @@
       "disclaimer": "* Я получаю небольшую комиссию с продаж, но это не увеличивает вашу цену. Ссылки ведут на проверенные магазины.",
       "recommendation": "✨ Начните с бесплатного CCleaner, чтобы почистить систему. Если нужна комплексная защита — Kaspersky. А SSD — это инвестиция, которая оживит даже 10-летний ноутбук.",
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Если инструкция не решила проблему, <a href='#' class='help-link' onclick='scrollToForm(); return false;'>оставь заявку ниже</a> — помогу удалённо за 500 ₽."
+      "help_text": "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично."
     },
     "ssd": {
       "title": "🖥️ Как выбрать SSD, чтобы ноутбук летал",
@@ -97,7 +97,7 @@
         }
       ],
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Если инструкция не решила проблему, <a href='#' class='help-link' onclick='scrollToForm(); return false;'>оставь заявку ниже</a> — помогу удалённо за 500 ₽.",
+      "help_text": "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
       "product_btn": {"text": "Подобрать SSD на Ситилинк", "affiliate_key": "ssd_btn"}
     },
     "virus": {
@@ -118,7 +118,7 @@
       ],
       "warning": "⚠️ Никогда не устанавливайте два постоянных антивируса одновременно — они будут конфликтовать, замедляя систему ещё сильнее. Используйте один основной (например, встроенный Защитник Windows + Kaspersky) и разовые сканеры по необходимости.",
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Если инструкция не решила проблему, <a href='#' class='help-link' onclick='scrollToForm(); return false;'>оставь заявку ниже</a> — помогу удалённо за 500 ₽.",
+      "help_text": "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
       "product_btn": {"text": "Попробовать Kaspersky бесплатно", "affiliate_key": "kaspersky"}
     },
     "gaming": {
@@ -142,7 +142,7 @@
         }
       ],
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Если инструкция не решила проблему, <a href='#' class='help-link' onclick='scrollToForm(); return false;'>оставь заявку ниже</a> — помогу удалённо за 500 ₽.",
+      "help_text": "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
       "product_btn": {"text": "Игровые SSD со скидкой", "affiliate_key": "gaming_ssd"}
     },
     "build": {
@@ -171,14 +171,14 @@
       ],
       "advice": "💡 Боитесь ошибиться? Я подготовил платный гайд «Сборка ПК без ошибок» с подробными фото, чек-листом и типовыми ошибками новичков. Поддержите проект и получите эксклюзив!",
       "donate_url": "https://boosty.to/igrip/donate",
-      "help_text": "Остались вопросы по сборке? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Напишите мне</a> — проконсультирую удалённо за 500 ₽.",
+      "help_text": "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
       "product_btn": {"text": "Купить гайд «Сборка ПК без ошибок» (300 ₽)", "affiliate_key": "build_guide"}
     }
   },
   "contact": {
-    "title": "📩 Не помогло? Я помогу лично",
-    "subtitle": "Опишите проблему — отвечу в течение дня. Первичная диагностика бесплатно. Если потребуется удалённая настройка, стоимость составит 500 ₽.",
+    "title": "📩 Не нашли ответа?",
+    "subtitle": "Опишите проблему — я отвечу лично в течение дня.",
     "form_action": "https://formspree.io/f/xgoqbbvl",
-    "telegram_text": "Или напишите сразу в Telegram: <a href='https://t.me/your_telegram' style='color:#ff6b35;'>@your_telegram</a>"
+    "telegram_text": ""
   }
 }
