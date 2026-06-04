@@ -6,7 +6,7 @@
   <title>Ускорь ПК без мастера — бесплатные инструкции и советы</title>
   <meta name="description" content="Проверенные способы ускорить ноутбук или компьютер: автозагрузка, чистка диска, выбор SSD, защита от вирусов. Бесплатные гайды и удалённая помощь.">
   <link rel="stylesheet" href="style.css">
-  <!-- Яндекс.Метрика (полный код) -->
+  <!-- Яндекс.Метрика -->
   <script type="text/javascript">
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
@@ -33,19 +33,19 @@
       <h1>🚀 Ускорь свой ПК без мастера</h1>
       <p>Выбери, что тебе нужно сегодня. Все советы проверены на сотнях ноутбуков и ПК.</p>
       <div class="btn-group">
-        <a href="/articles/instruction.html" class="nav-btn"><span>📋</span> Пошаговая инструкция</a>
-        <a href="/articles/programs.html" class="nav-btn"><span>⚡</span> Программы и железо</a>
-        <a href="/articles/ssd.html" class="nav-btn"><span>🖥️</span> Как выбрать SSD</a>
-        <a href="/articles/monitor.html" class="nav-btn"><span>🖥️</span> Как выбрать монитор</a>
-        <a href="/articles/windows11.html" class="nav-btn"><span>🪟</span> Секреты Windows 11</a>
-        <a href="/articles/virus.html" class="nav-btn"><span>🛡️</span> Чистка от вирусов</a>
-        <a href="/articles/gaming.html" class="nav-btn"><span>🎮</span> Ускорение для игр</a>
-        <a href="/articles/build.html" class="nav-btn"><span>🔧</span> Сборка ПК</a>
+        <a href="/article/instruction.html" class="nav-btn"><span>📋</span> Пошаговая инструкция</a>
+        <a href="/article/programs.html" class="nav-btn"><span>⚡</span> Программы и железо</a>
+        <a href="/article/ssd.html" class="nav-btn"><span>🖥️</span> Как выбрать SSD</a>
+        <a href="/article/monitor.html" class="nav-btn"><span>🖥️</span> Как выбрать монитор</a>
+        <a href="/article/windows11.html" class="nav-btn"><span>🪟</span> Секреты Windows 11</a>
+        <a href="/article/virus.html" class="nav-btn"><span>🛡️</span> Чистка от вирусов</a>
+        <a href="/article/gaming.html" class="nav-btn"><span>🎮</span> Ускорение для игр</a>
+        <a href="/article/build.html" class="nav-btn"><span>🔧</span> Сборка ПК</a>
         <a href="/guide" class="nav-btn guide-btn"><span>📘</span> Платный гайд</a>
       </div>
     </div>
 
-    <!-- Превью-карточки статей (генерируются JS или можно статично) -->
+    <!-- Превью-карточки статей -->
     <div class="articles-preview" id="articlesPreview"></div>
 
     <div class="affiliate-banner">
@@ -70,12 +70,11 @@
 
   <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>↑</span></button>
   <div class="cookie-consent" id="cookieConsent">
-    <span>🍪 Мы используем куки и Яндекс.Метрику для улучшения работы сайта. Продолжая, вы соглашаетесь с <a href="/privacy">политикой конфиденциальности</a>.</span>
+    <span>🍪 Мы используем куки и Яндекс.Метрику. <a href="/privacy">Подробнее</a></span>
     <button onclick="acceptCookies()">Принимаю</button>
   </div>
 
   <script>
-    // Плавный скролл, кнопка вверх, куки-баннер, тёмная тема (взять из старого main.js)
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -91,7 +90,7 @@
       document.getElementById('cookieConsent').classList.add('hidden');
     }
 
-    // Генерация превью-карточек из статического списка
+    // Карточки превью
     const articles = [
       { id: "instruction", icon: "📋", title: "Пошаговая инструкция", desc: "Ускорение за 30 минут: автозагрузка, временные файлы, дефрагментация." },
       { id: "programs", icon: "⚡", title: "Программы и железо", desc: "Проверенные утилиты и недорогие аксессуары для ускорения." },
@@ -104,7 +103,7 @@
     ];
     const container = document.getElementById('articlesPreview');
     container.innerHTML = articles.map(a => `
-      <a href="/articles/${a.id}.html" class="preview-card">
+      <a href="/article/${a.id}.html" class="preview-card">
         <span class="icon">${a.icon}</span>
         <h3>${a.title}</h3>
         <p>${a.desc}</p>
