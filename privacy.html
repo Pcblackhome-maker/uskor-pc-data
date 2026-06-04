@@ -1,54 +1,62 @@
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #f5f7fa;
-    font-family: 'Roboto', 'Open Sans', sans-serif;
-    color: #2c3e50;
-  }
-  body.dark { background: #1a1d2e; color: #d0d0d0; }
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Политика конфиденциальности — Ускорь ПК</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f5f7fa;
+      font-family: 'Roboto', 'Open Sans', sans-serif;
+      color: #2c3e50;
+    }
+    body.dark { background: #1a1d2e; color: #d0d0d0; }
 
-  .decor-spot {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(100px);
-    z-index: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .decor-spot.spot-1 {
-    width: 450px; height: 450px;
-    background: rgba(255,107,53,0.22);
-    top: -120px; left: -120px;
-  }
-  .decor-spot.spot-2 {
-    width: 550px; height: 550px;
-    background: rgba(255,140,80,0.18);
-    bottom: -180px; right: -180px;
-  }
-  .decor-spot.spot-3 {
-    width: 380px; height: 380px;
-    background: rgba(100,160,255,0.16);
-    top: 45%; left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  body.dark .decor-spot { opacity: 0; }
+    .decor-spot {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .decor-spot.spot-1 {
+      width: 450px; height: 450px;
+      background: rgba(255,107,53,0.22);
+      top: -120px; left: -120px;
+    }
+    .decor-spot.spot-2 {
+      width: 550px; height: 550px;
+      background: rgba(255,140,80,0.18);
+      bottom: -180px; right: -180px;
+    }
+    .decor-spot.spot-3 {
+      width: 380px; height: 380px;
+      background: rgba(100,160,255,0.16);
+      top: 45%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    body.dark .decor-spot { opacity: 0; }
 
-  .privacy-container { max-width: 800px; margin: 0 auto; padding: 40px 20px 60px; position: relative; z-index: 1; }
-  .back-btn { display: inline-flex; align-items: center; gap: 8px; background: white; color: #ff6b35; border: none; padding: 14px 28px; font-size: 16px; font-weight: 600; border-radius: 50px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: all 0.3s; margin-bottom: 30px; }
-  .back-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); background: #fff5f0; }
-  body.dark .back-btn { background: #2a2a4a; color: #ff9f6e; }
-  .privacy-card { background: white; border-radius: 24px; padding: 35px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-  body.dark .privacy-card { background: #232640; color: #d0d0d0; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-  .privacy-card h1 { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: #1a1a1a; }
-  body.dark .privacy-card h1 { color: #f0f0f0; }
-  .privacy-card h2 { font-size: 20px; margin: 20px 0 10px; color: #ff6b35; }
-  body.dark .privacy-card h2 { color: #ff9f6e; }
-  .privacy-card p, .privacy-card li { font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 12px; }
-  body.dark .privacy-card p, body.dark .privacy-card li { color: #bbb; }
-  .privacy-card a { color: #ff6b35; text-decoration: none; font-weight: 500; }
-  body.dark .privacy-card a { color: #ff9f6e; }
-  @media (max-width: 600px) { .privacy-card { padding: 20px; } }
-</style>
+    .privacy-container { max-width: 800px; margin: 0 auto; padding: 40px 20px 60px; position: relative; z-index: 1; }
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; background: white; color: #ff6b35; border: none; padding: 14px 28px; font-size: 16px; font-weight: 600; border-radius: 50px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: all 0.3s; margin-bottom: 30px; }
+    .back-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); background: #fff5f0; }
+    body.dark .back-btn { background: #2a2a4a; color: #ff9f6e; }
+    .privacy-card { background: white; border-radius: 24px; padding: 35px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    body.dark .privacy-card { background: #232640; color: #d0d0d0; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .privacy-card h1 { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: #1a1a1a; }
+    body.dark .privacy-card h1 { color: #f0f0f0; }
+    .privacy-card h2 { font-size: 20px; margin: 20px 0 10px; color: #ff6b35; }
+    body.dark .privacy-card h2 { color: #ff9f6e; }
+    .privacy-card p, .privacy-card li { font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 12px; }
+    body.dark .privacy-card p, body.dark .privacy-card li { color: #bbb; }
+    .privacy-card a { color: #ff6b35; text-decoration: none; font-weight: 500; }
+    body.dark .privacy-card a { color: #ff9f6e; }
+    @media (max-width: 600px) { .privacy-card { padding: 20px; } }
+  </style>
+</head>
+<body>
 
 <div class="decor-spot spot-1"></div>
 <div class="decor-spot spot-2"></div>
@@ -60,7 +68,7 @@
     <h1>Политика конфиденциальности</h1>
     <p>Дата последнего обновления: 2025 г.</p>
     <h2>1. Какие данные мы собираем</h2>
-    <p>На сайте «Ускорь ПК» (uskor‑pc.tilda.ws) мы собираем только те данные, которые вы предоставляете добровольно:</p>
+    <p>На сайте «Ускорь ПК» мы собираем только те данные, которые вы предоставляете добровольно:</p>
     <ul>
       <li><strong>Форма обратной связи:</strong> имя, email или Telegram, текст сообщения. Эти данные используются исключительно для ответа на ваш запрос и не передаются третьим лицам.</li>
       <li><strong>Яндекс.Метрика:</strong> автоматически собирает обезличенные данные о посещениях (IP-адрес, тип браузера, время на сайте). IP-адрес анонимизируется. Метрика использует куки-файлы для идентификации уникальных посетителей.</li>
@@ -78,3 +86,5 @@
     <p>По всем вопросам: <a href="/">форма обратной связи</a>.</p>
   </div>
 </div>
+</body>
+</html>
