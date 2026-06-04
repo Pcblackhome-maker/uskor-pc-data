@@ -1,0 +1,1307 @@
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f5f7fa !important;
+    min-height: 100vh;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    color: #2c3e50;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.dark {
+    background: #1a1d2e !important;
+    color: #d0d0d0;
+  }
+
+  /* Декоративные пятна */
+  .decor-spot {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .decor-spot.spot-1 {
+    width: 450px; height: 450px;
+    background: rgba(255,107,53,0.22);
+    top: -120px; left: -120px;
+  }
+  .decor-spot.spot-2 {
+    width: 550px; height: 550px;
+    background: rgba(255,140,80,0.18);
+    bottom: -180px; right: -180px;
+  }
+  .decor-spot.spot-3 {
+    width: 380px; height: 380px;
+    background: rgba(100,160,255,0.16);
+    top: 45%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  body.dark .decor-spot { opacity: 0; }
+
+  .reading-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg,#ff6b35,#ff7e5f); z-index: 10002; width: 0%; transition: width 0.1s ease; }
+  body.dark .reading-progress { background: linear-gradient(90deg, #ff9f6e, #ffb08c); }
+
+  .landing { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; position: relative; z-index: 1; }
+  .loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.95); z-index: 10001; font-size: 60px; animation: rocketFly 1.2s ease-in-out infinite; }
+  .loader.hidden { display: none; }
+  @keyframes rocketFly { 0% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-20px); opacity: 0.8; } 100% { transform: translateY(0); opacity: 1; } }
+
+  .hero { text-align: center; padding: 50px 20px 40px; background: linear-gradient(135deg,#ff7e5f,#ff6b35); border-radius: 24px; color: white; margin-bottom: 40px; box-shadow: 0 15px 35px rgba(255,107,53,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; }
+  .hero:hover { transform: translateY(-2px); box-shadow: 0 20px 45px rgba(255,107,53,0.4); }
+  .hero h1 { font-size: 38px; font-weight: 700; margin-bottom: 15px; cursor: default; }
+  .hero p { font-size: 18px; opacity: 0.95; max-width: 550px; margin: 0 auto 30px; line-height: 1.5; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .nav-btn { background: white; color: #ff6b35; border: none; padding: 14px 28px; font-size: 16px; font-weight: 600; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: all 0.3s; display: flex; align-items: center; gap: 8px; text-decoration: none; position: relative; }
+  .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); background: #fff5f0; }
+  .nav-btn.active { background: #ff6b35; color: white; box-shadow: 0 8px 25px rgba(255,107,53,0.4); }
+  .nav-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    animation: pulseDot 1.5s ease-in-out infinite;
+  }
+  @keyframes pulseDot {
+    0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+  .nav-btn.active span { transform: scale(1.2); }
+  .nav-btn span { display: inline-block; transition: transform 0.2s; }
+  .nav-btn:hover span { transform: rotate(10deg) scale(1.1); }
+  .guide-btn { background: #fff5f0; color: #ff6b35; border: 2px solid #ff6b35; }
+  .guide-btn:hover { background: #ff6b35; color: white; }
+
+  body.dark .nav-btn { background: #2a2a4a; color: #ff9f6e; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+  body.dark .nav-btn:hover { background: #3a3a5a; }
+  body.dark .nav-btn.active { background: #ff9f6e; color: #1a1d2e; }
+  body.dark .nav-btn.active::after { background: #1a1d2e; }
+  body.dark .guide-btn { background: #2a2a4a; color: #ff9f6e; border-color: #ff9f6e; }
+
+  .content-box {
+    display: none;
+    background: white;
+    border-radius: 24px;
+    padding: 35px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    margin-top: 30px;
+    animation: cardAppear 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .content-box.active { display: block; }
+  .content-box:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+  body.dark .content-box { background: #232640; color: #d0d0d0; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  body.dark .content-box:hover { box-shadow: 0 15px 35px rgba(255,159,110,0.15); }
+  @keyframes cardAppear {
+    0% { opacity: 0; transform: translateY(25px) scale(0.95); }
+    60% { opacity: 1; transform: translateY(-5px) scale(1.01); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  .content-box h2 { font-size: 28px; font-weight: 700; margin-bottom: 35px; color: #1a1a1a; animation: titlePulse 2s ease-in-out infinite; }
+  @keyframes titlePulse { 0% { text-shadow: 0 0 0px rgba(255,107,53,0); } 50% { text-shadow: 0 0 8px rgba(255,107,53,0.3); } 100% { text-shadow: 0 0 0px rgba(255,107,53,0); } }
+  body.dark .content-box h2 { color: #f0f0f0; }
+
+  .share-buttons { display: flex; gap: 10px; margin-top: 25px; flex-wrap: wrap; }
+  .share-btn { background: #f0f0f0; border: none; padding: 8px 14px; border-radius: 20px; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 6px; color: #444; transition: all 0.2s; text-decoration: none; }
+  .share-btn:hover { background: #ff6b35; color: white; transform: translateY(-2px); }
+  body.dark .share-btn { background: #2a2a4a; color: #ccc; }
+  body.dark .share-btn:hover { background: #ff9f6e; color: #1a1d2e; }
+  .collapse-all-btn { display: none; background: white; border: 1px solid #ddd; color: #666; padding: 6px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; margin-bottom: 15px; transition: all 0.2s; align-items: center; gap: 4px; }
+  .collapse-all-btn.visible { display: inline-flex; }
+  .collapse-all-btn:hover { background: #f5f5f5; color: #333; border-color: #bbb; }
+  body.dark .collapse-all-btn { background: #2a2a4a; border-color: #555; color: #ccc; }
+  body.dark .collapse-all-btn:hover { background: #3a3a5a; color: #fff; }
+  .accordion-item:first-child { margin-top: 8px; }
+  .accordion-item { margin-bottom: 15px; border-left: 4px solid #ff6b35; border-radius: 8px; overflow: hidden; background: white; transition: box-shadow 0.3s; }
+  .accordion-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  body.dark .accordion-item { background: #232640; border-left-color: #ff9f6e; }
+  body.dark .accordion-item:hover { box-shadow: 0 4px 12px rgba(255,159,110,0.15); }
+  .accordion-header { padding: 15px 20px; background: #fafafa; cursor: pointer; font-size: 18px; font-weight: 600; color: #1a1a1a; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; user-select: none; }
+  .accordion-header:hover { background: #f0f0f0; }
+  .accordion-header::after { content: '▾'; font-size: 20px; color: #ff6b35; transition: transform 0.2s, color 0.2s; }
+  .accordion-header.active { background: #fff5f0; color: #e55a2b; }
+  .accordion-header.active::after { transform: rotate(180deg); color: #e55a2b; }
+  body.dark .accordion-header { background: #2a2a4a; color: #ddd; }
+  body.dark .accordion-header:hover { background: #3a3a5a; }
+  body.dark .accordion-header.active { background: #3d2a2a; color: #ff9f6e; }
+  body.dark .accordion-header::after { color: #ff9f6e; }
+  .accordion-body { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease, background 0.3s; background: #fdfdfd; }
+  .accordion-body.open { max-height: 2000px; padding: 20px; background: #fffaf7; }
+  body.dark .accordion-body { background: #1a1d2e; }
+  body.dark .accordion-body.open { background: #232640; }
+  .accordion-body p { color: #333; line-height: 1.8; font-size: 16px; margin-bottom: 12px; position: relative; }
+  body.dark .accordion-body p { color: #d0d0d0; }
+  .accordion-body p:first-of-type::first-letter {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #ff6b35;
+    float: left;
+    margin: 0 8px 0 0;
+    line-height: 0.8;
+  }
+  body.dark .accordion-body p:first-of-type::first-letter { color: #ff9f6e; }
+  .accordion-body ul {
+    list-style: none;
+    padding-left: 5px;
+  }
+  .accordion-body ul li {
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 8px;
+    transition: transform 0.2s;
+  }
+  .accordion-body ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff6b35;
+    font-weight: bold;
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+  body.dark .accordion-body ul li::before { color: #ff9f6e; }
+  .accordion-body ul li:hover {
+    transform: translateX(5px);
+  }
+  .accordion-body ul li:hover::before {
+    transform: scale(1.2);
+  }
+  .accordion-body ol { margin: 10px 0 10px 20px; color: #444; line-height: 1.6; }
+  body.dark .accordion-body ol { color: #bbb; }
+  .accordion-body code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 15px; color: #d04a02; transition: background 0.2s; }
+  .accordion-body code:hover { background: #ffe0cc; }
+  body.dark .accordion-body code { background: #2a2a4a; color: #ff9f6e; }
+  .accordion-body strong { color: #1a1a1a; }
+  body.dark .accordion-body strong { color: #fff; }
+
+  /* Тултипы для терминов – умное позиционирование */
+  .tooltip-term {
+    border-bottom: 1px dashed #ff6b35;
+    cursor: help;
+    position: relative;
+    display: inline-block;
+  }
+  body.dark .tooltip-term { border-bottom-color: #ff9f6e; }
+
+  .tooltip-term::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 260px;
+    width: max-content;
+    white-space: normal;
+    word-wrap: break-word;
+    z-index: 20;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .tooltip-term.tooltip-visible::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .advice-block, .warning-block {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    animation: fadeSlideIn 0.5s ease both;
+  }
+  .advice-block { background: #f0f8ff; }
+  body.dark .advice-block { background: #2a2a4a; }
+  .warning-block { background: #ffe9e0; }
+  body.dark .warning-block { background: #3d2a2a; }
+
+  .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: box-shadow 0.3s; }
+  .table-wrapper:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  body.dark .table-wrapper { box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+  body.dark .table-wrapper:hover { box-shadow: 0 4px 15px rgba(255,159,110,0.2); }
+  .clean-table { width: 100%; min-width: 600px; border-collapse: collapse; border-radius: 12px; overflow: hidden; }
+  .clean-table th { background: #f8f9fa; padding: 16px; text-align: left; font-weight: 600; border-bottom: 2px solid #eee; transition: background 0.3s; }
+  .clean-table th:hover { background: #fff5f0; }
+  body.dark .clean-table th { background: #2a2a4a; color: #ddd; border-bottom-color: #555; }
+  body.dark .clean-table th:hover { background: #3d2a2a; }
+  .clean-table td { padding: 16px; border-bottom: 1px solid #f0f0f0; transition: background 0.2s; }
+  .clean-table tr:hover td { background: #fafafa; }
+  body.dark .clean-table td { border-bottom-color: #555; color: #ccc; }
+  body.dark .clean-table tr:hover td { background: #2a2a4a; }
+
+  .btn-tilda { background: #ff6b35; color: #fff !important; padding: 10px 24px; text-decoration: none; border-radius: 50px; display: inline-block; font-weight: 600; font-size: 14px; box-shadow: 0 6px 15px rgba(255,107,53,0.25); transition: all 0.3s; border: none; cursor: pointer; text-align: center; line-height: 1.2; white-space: nowrap; position: relative; }
+  .btn-tilda:hover { background: #e55a2b; box-shadow: 0 10px 22px rgba(255,107,53,0.4); transform: translateY(-2px); color: #fff; }
+  .btn-tilda:active { transform: translateY(0); box-shadow: 0 4px 10px rgba(255,107,53,0.3); }
+  body.dark .btn-tilda { background: #ff9f6e; color: #1a1d2e !important; }
+  body.dark .btn-tilda:hover { background: #ffb08c; box-shadow: 0 10px 22px rgba(255,159,110,0.4); }
+  .btn-tilda .spinner {
+    display: none;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+  @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+  .donate-link {
+    display: inline-block;
+    margin: 40px 0 20px;
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #ff6b35, #ff8c5a, #ff6b35);
+    background-size: 200% 200%;
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    animation: shimmer 3s ease infinite, breathe 2s ease-in-out infinite;
+    box-shadow: 0 6px 20px rgba(255,107,53,0.3);
+    transition: transform 0.3s;
+  }
+  .donate-link:hover {
+    transform: scale(1.05);
+    animation: none;
+    background: #e55a2b;
+    box-shadow: 0 10px 25px rgba(255,107,53,0.5);
+  }
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes breathe {
+    0% { box-shadow: 0 6px 20px rgba(255,107,53,0.3); }
+    50% { box-shadow: 0 8px 28px rgba(255,107,53,0.45); }
+    100% { box-shadow: 0 6px 20px rgba(255,107,53,0.3); }
+  }
+  body.dark .donate-link { background: linear-gradient(45deg, #ff9f6e, #ffb08c, #ff9f6e); color: #1a1d2e !important; animation: none; }
+  body.dark .donate-link:hover { background: #ffb08c; box-shadow: 0 10px 25px rgba(255,159,110,0.5); }
+
+  .content-box .btn-tilda {
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+
+  .faq-section { margin-top: 25px; }
+  .faq-section h3 { font-size: 22px; margin-bottom: 15px; color: #ff6b35; }
+  body.dark .faq-section h3 { color: #ff9f6e; }
+  .faq-item { margin-bottom: 10px; border-bottom: 1px dashed #ddd; padding-bottom: 10px; transition: background 0.3s; border-radius: 8px; padding: 8px; }
+  .faq-item.open { background: #fff5f0; }
+  body.dark .faq-item { border-bottom-color: #555; }
+  body.dark .faq-item.open { background: #3d2a2a; }
+  .faq-question { font-weight: 600; cursor: pointer; color: #1a1a1a; }
+  body.dark .faq-question { color: #f0f0f0; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; color: #555; padding-left: 10px; }
+  body.dark .faq-answer { color: #bbb; }
+  .faq-item.open .faq-answer { max-height: 200px; padding-top: 10px; }
+
+  .contact-form { background: #f9fafc; border-radius: 24px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-top: 50px; border-top: 3px solid #ff6b35; }
+  body.dark .contact-form { background: #232640; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-top-color: #ff9f6e; }
+  .contact-form h2 { font-size: 26px; font-weight: 700; margin-bottom: 10px; color: #1a1a1a; }
+  body.dark .contact-form h2 { color: #f0f0f0; }
+  .contact-form p { color: #666; margin-bottom: 25px; }
+  body.dark .contact-form p { color: #bbb; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #444; }
+  body.dark .form-group label { color: #ddd; }
+  .form-group input, .form-group textarea { width: 100%; padding: 14px 18px; border: 2px solid #e0e0e0; border-radius: 12px; font-family: inherit; font-size: 16px; transition: border 0.3s, box-shadow 0.3s; background: #fff; }
+  body.dark .form-group input, body.dark .form-group textarea { background: #2a2a4a; border-color: #555; color: #eee; }
+  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #ff6b35; box-shadow: 0 0 0 4px rgba(255,107,53,0.1); }
+  body.dark .form-group input:focus, body.dark .form-group textarea:focus { border-color: #ff9f6e; box-shadow: 0 0 0 4px rgba(255,159,110,0.2); }
+  .submit-btn { background: #ff6b35; color: white; border: none; padding: 14px 32px; font-size: 18px; font-weight: 600; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 20px rgba(255,107,53,0.3); transition: all 0.3s; }
+  .submit-btn:hover { background: #e55a2b; box-shadow: 0 12px 28px rgba(255,107,53,0.4); transform: translateY(-2px); }
+  .submit-btn:active { transform: translateY(0); }
+  body.dark .submit-btn { background: #ff9f6e; color: #1a1d2e; }
+  body.dark .submit-btn:hover { background: #ffb08c; box-shadow: 0 12px 28px rgba(255,159,110,0.4); }
+  .help-link { color: #ff6b35; text-decoration: underline; cursor: pointer; }
+  body.dark .help-link { color: #ff9f6e; }
+
+  /* Кнопка Наверх с прогресс-баром */
+  .scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: white;
+    color: #ff6b35;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(10px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(#ff6b35 0deg, #ff6b35 0deg, #f0f0f0 0deg, #f0f0f0 360deg);
+  }
+  .scroll-top-btn.visible { opacity: 1; transform: translateY(0); }
+  .scroll-top-btn::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    background: white;
+    z-index: 1;
+  }
+  .scroll-top-btn span { position: relative; z-index: 2; }
+  body.dark .scroll-top-btn { background: conic-gradient(#ff9f6e 0deg, #ff9f6e 0deg, #2a2a4a 0deg, #2a2a4a 360deg); color: #ff9f6e; }
+  body.dark .scroll-top-btn::before { background: #1a1d2e; }
+
+  /* Всплывающая кнопка доната */
+  .floating-donate {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 8px 25px rgba(255,107,53,0.4);
+    cursor: pointer;
+    z-index: 998;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .floating-donate.visible { opacity: 1; transform: translateY(0); }
+  .floating-donate:hover { background: #e55a2b; transform: translateY(-2px); }
+  body.dark .floating-donate { background: #ff9f6e; color: #1a1d2e; }
+  body.dark .floating-donate:hover { background: #ffb08c; }
+
+  .admin-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 20px rgba(255,107,53,0.4);
+    padding: 20px;
+    display: none;
+    z-index: 1000;
+    max-width: 320px;
+    font-size: 14px;
+    color: #333;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255,107,53,0.5);
+  }
+  body.dark .admin-panel {
+    background: rgba(30,30,58,0.9);
+    color: #ddd;
+    border-color: rgba(255,159,110,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px rgba(255,159,110,0.3);
+  }
+  .admin-panel.show { display: block; }
+  .admin-panel .counter { font-weight: 700; color: #ff6b35; font-size: 22px; display: block; margin: 5px 0 15px; }
+  body.dark .admin-panel .counter { color: #ff9f6e; }
+  .admin-panel a { display: block; margin: 4px 0; color: #ff6b35; text-decoration: none; font-weight: 500; font-size: 13px; }
+  body.dark .admin-panel a { color: #ff9f6e; }
+  .admin-panel a:hover { text-decoration: underline; }
+  .admin-panel .close-btn { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 20px; cursor: pointer; color: #888; line-height: 1; }
+  body.dark .admin-panel .close-btn { color: #aaa; }
+  .admin-panel .theme-toggle { background: #ff6b35; color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; margin-top: 10px; display: block; width: 100%; text-align: center; }
+  .admin-panel .theme-toggle:hover { background: #e55a2b; }
+  body.dark .admin-panel .theme-toggle { background: #ff9f6e; color: #1a1d2e; }
+  body.dark .admin-panel .theme-toggle:hover { background: #ffb08c; }
+  #kitty-container { margin-top: 8px; text-align: center; font-size: 20px; display: none; }
+  .affiliate-stats { margin-top: 10px; }
+  .affiliate-stats h4 { margin-bottom: 5px; }
+  .affiliate-stats ul { list-style: none; padding: 0; }
+  .affiliate-stats li { padding: 4px 0; border-bottom: 1px solid #eee; font-size: 13px; display: flex; justify-content: space-between; }
+  body.dark .affiliate-stats li { border-bottom-color: #555; }
+  .admin-links { margin-top: 10px; }
+  .admin-links h4 { margin-bottom: 5px; }
+  .reset-btn { background: #eee; border: none; padding: 4px 10px; border-radius: 10px; font-size: 12px; cursor: pointer; margin-top: 8px; color: #888; }
+  .reset-btn:hover { background: #ddd; color: #333; }
+  body.dark .reset-btn { background: #2a2a4a; color: #aaa; }
+  body.dark .reset-btn:hover { background: #3a3a5a; color: #ddd; }
+
+  .affiliate-banner {
+    text-align: center;
+    margin: 30px 0;
+    background: white;
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .affiliate-banner:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  body.dark .affiliate-banner { background: #232640; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+  body.dark .affiliate-banner:hover { box-shadow: 0 4px 15px rgba(255,159,110,0.2); }
+  .affiliate-banner img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .site-footer { text-align: center; margin-top: 40px; padding: 20px; color: #888; font-size: 14px; opacity: 0.8; transition: opacity 0.3s; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+  body.dark .site-footer { color: #aaa; }
+  .site-footer a { color: #ff6b35; text-decoration: none; font-weight: 500; }
+  body.dark .site-footer a { color: #ff9f6e; }
+  .site-footer a:hover { text-decoration: underline; }
+  .site-footer span { color: #ff6b35; }
+  body.dark .site-footer span { color: #ff9f6e; }
+  #footer-trigger { cursor: default; }
+  .cookie-consent { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 16px 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; z-index: 10000; font-size: 14px; color: #444; max-width: 600px; width: calc(100% - 40px); transition: opacity 0.3s, transform 0.3s; }
+  body.dark .cookie-consent { background: #232640; color: #ddd; }
+  .cookie-consent.hidden { opacity: 0; transform: translateX(-50%) translateY(20px); pointer-events: none; }
+  .cookie-consent a { color: #ff6b35; text-decoration: underline; font-weight: 500; }
+  body.dark .cookie-consent a { color: #ff9f6e; }
+  .cookie-consent button { background: #ff6b35; color: white; border: none; padding: 10px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 14px; transition: background 0.3s; white-space: nowrap; }
+  .cookie-consent button:hover { background: #e55a2b; }
+  body.dark .cookie-consent button { background: #ff9f6e; color: #1a1d2e; }
+  body.dark .cookie-consent button:hover { background: #ffb08c; }
+
+  /* Кнопка "Помогло!" */
+  .helpful-btn {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #444;
+    transition: all 0.2s;
+    margin-top: 15px;
+  }
+  .helpful-btn:hover { background: #e0e0e0; }
+  .helpful-btn.active { background: #ff6b35; color: white; }
+  body.dark .helpful-btn { background: #2a2a4a; color: #ccc; }
+  body.dark .helpful-btn:hover { background: #3a3a5a; }
+  body.dark .helpful-btn.active { background: #ff9f6e; color: #1a1d2e; }
+  .helpful-count { transition: all 0.3s ease; }
+
+  /* Кнопка печати */
+  .print-btn {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #444;
+    transition: all 0.2s;
+    margin-top: 15px;
+    margin-left: 10px;
+  }
+  .print-btn:hover { background: #e0e0e0; }
+  body.dark .print-btn { background: #2a2a4a; color: #ccc; }
+  body.dark .print-btn:hover { background: #3a3a5a; }
+
+  @media (max-width: 600px) {
+    .landing { padding: 20px 12px 40px; }
+    .hero { padding: 30px 15px 25px; }
+    .hero h1 { font-size: 26px; }
+    .nav-btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 14px; }
+    .guide-btn { width: 100%; }
+    .content-box { padding: 25px 20px; }
+    .content-box h2 { font-size: 24px; margin-bottom: 25px; }
+    .accordion-header { font-size: 16px; padding: 12px 15px; }
+    .accordion-body.open { padding: 15px; }
+    .accordion-body p { font-size: 15px; }
+    .table-wrapper { margin-top: 15px; }
+    .clean-table th, .clean-table td { padding: 12px; }
+    .btn-tilda { padding: 8px 18px; font-size: 13px; }
+    .share-btn { padding: 6px 12px; font-size: 13px; }
+    .site-footer { flex-direction: column; gap: 6px; }
+    .admin-panel { max-width: 260px; right: 10px; bottom: 10px; }
+    .scroll-top-btn { bottom: 20px; left: 20px; width: 44px; height: 44px; font-size: 20px; }
+    .floating-donate { bottom: 20px; right: 20px; padding: 10px 18px; font-size: 14px; }
+    .affiliate-banner { padding: 10px; margin: 20px 0; }
+    .affiliate-banner img { border-radius: 8px; }
+    .donate-link { padding: 10px 20px; font-size: 14px; margin: 30px 0 15px; }
+    .print-btn { margin-left: 5px; }
+  }
+</style>
+
+<div class="decor-spot spot-1"></div>
+<div class="decor-spot spot-2"></div>
+<div class="decor-spot spot-3"></div>
+<div class="reading-progress" id="readingProgress"></div>
+
+<div class="landing" id="app">
+  <div class="loader" id="loader">🚀</div>
+</div>
+
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>↑</span></button>
+
+<a href="https://boosty.to/igrip/donate" class="floating-donate" id="floatingDonate" target="_blank">☕ Поддержать</a>
+
+<div class="admin-panel" id="adminPanel">
+  <button class="close-btn" onclick="document.getElementById('adminPanel').classList.remove('show'); stopKittyAnimation()">✕</button>
+  <strong>🔒 Админ-панель</strong>
+  <span>👀 Открытий страницы (локально):</span>
+  <span class="counter" id="page-count">0</span>
+  <span>👥 Активных сессий: <span class="counter" id="online-count">1</span></span>
+  <span id="admin-time" style="font-size:12px; color:#888; display:block; margin:5px 0;"></span>
+  <a href="https://tilda.cc/identity/login/" target="_blank">📊 Статистика Tilda</a>
+  <a href="https://metrika.yandex.ru/dashboard?group=day&period=week&id=109547393" target="_blank">📈 Яндекс.Метрика</a>
+  <button class="theme-toggle" id="themeToggleBtn">🌙 Ночной режим</button>
+  <div class="affiliate-stats" id="affiliateStats">
+    <h4>🖱️ Клики по партнёркам</h4>
+    <ul id="affiliateList"></ul>
+  </div>
+  <div class="admin-links">
+    <h4>📈 Просмотры статей</h4>
+    <ul id="viewsList" style="list-style:none;padding:0;font-size:12px;"></ul>
+  </div>
+  <a href="https://github.com/Pcblackhome-maker/uskor-pc-data/edit/main/articles.json" target="_blank" style="display:block; margin-top:8px; font-weight:600;">✏️ Редактировать статьи (JSON)</a>
+  <button class="reset-btn" onclick="if(confirm('Сбросить все локальные данные (счётчики, куки, темы)?')) { localStorage.clear(); location.reload(); }">🗑 Сбросить всё</button>
+  <div id="kitty-container">🐈</div>
+</div>
+
+<div class="cookie-consent" id="cookieConsent">
+  <span>🍪 Мы используем куки и Яндекс.Метрику для улучшения работы сайта. Продолжая, вы соглашаетесь с <a href="/privacy" target="_blank">политикой конфиденциальности</a>.</span>
+  <button onclick="acceptCookies()">Принимаю</button>
+</div>
+
+<script>
+  // Статьи уже внутри
+  const SITE_DATA = {
+    hero: {
+      title: "🚀 Ускорь свой ПК без мастера",
+      subtitle: "Выбери, что тебе нужно сегодня. Все советы проверены на сотнях ноутбуков и ПК."
+    },
+    buttons: [
+      {"id": "instruction", "icon": "📋", "label": "Пошаговая инструкция"},
+      {"id": "programs", "icon": "⚡", "label": "Программы и железо"},
+      {"id": "ssd", "icon": "🖥️", "label": "Как выбрать SSD"},
+      {"id": "monitor", "icon": "🖥️", "label": "Как выбрать монитор"},
+      {"id": "windows11", "icon": "🪟", "label": "Секреты Windows 11"},
+      {"id": "virus", "icon": "🛡️", "label": "Чистка от вирусов"},
+      {"id": "gaming", "icon": "🎮", "label": "Ускорение для игр"},
+      {"id": "build", "icon": "🔧", "label": "Сборка ПК"}
+    ],
+    affiliate: {
+      "ccleaner": "#",
+      "kaspersky": "#",
+      "ssd_240gb": "#",
+      "joom_mousepad": "https://aflink.ru/g/18vhi6r5cvf10c2e97fc79deb39b46/?erid=5jtCeReNwxHpfQTFuc3CS5J",
+      "joom_stand": "https://aflink.ru/g/18vhi6r5cvf10c2e97fc79deb39b46/?erid=5jtCeReNwxHpfQTFuc3CS5J",
+      "alik_accessories": "https://rzekl.com/c/1e8d114494f10c2e97fc16525dc3e8/",
+      "build_guide": "/guide#build-guide",
+      "monitor_144hz": "#",
+      "monitor_4k": "#",
+      "windows11_tips": "#"
+    },
+    articles: {
+      instruction: {
+        title: "📋 Пошаговая инструкция: ускорение за 30 минут",
+        steps: [
+          {
+            strong: "1. Автозагрузка — главный враг скорости",
+            text: "<strong>Что это?</strong> Когда вы включаете компьютер, вместе с Windows запускается куча программ. Многие из них вам не нужны прямо сейчас, но они съедают оперативную память и тормозят систему.\n\n<strong>Как исправить:</strong>\n<ul><li>Нажмите <code>Ctrl + Shift + Esc</code> – откроется Диспетчер задач.</li><li>Перейдите на вкладку «Автозагрузка».</li><li>Отключите всё, без чего можно обойтись: мессенджеры, торрент-клиенты, облачные сервисы. Сами программы останутся на месте, просто не будут стартовать сами.</li></ul>\n\n<strong>Результат:</strong> скорость загрузки Windows вырастет на 20–40%. Особенно заметно на недорогих ноутбуках, которые часто используют для учёбы и нетребовательных игр вроде Roblox или Minecraft."
+          },
+          {
+            strong: "2. Очистка временных файлов и кэша обновлений",
+            text: "<strong>Почему это важно:</strong> Windows и браузеры постоянно создают временные файлы. Со временем они занимают гигабайты места и замедляют чтение/запись на диске.\n\n<strong>Как сделать:</strong>\n<ul><li>Нажмите <code>Win + R</code>, введите <code>cleanmgr</code> и нажмите Enter.</li><li>Выберите диск C: и нажмите «Очистить системные файлы».</li><li>Отметьте галочками «Временные файлы», «Кэш обновлений Windows», «Файлы корзины». Смело удаляйте – это безопасно.</li></ul>\n\nОсвободившееся место ускорит запуск программ и даже может повысить FPS в тяжёлых играх, таких как <strong>Cyberpunk 2077</strong> или <strong>Alan Wake 2</strong>, потому что диску станет легче дышать."
+          },
+          {
+            strong: "3. Дефрагментация и оптимизация реестра",
+            text: "<strong>Для HDD (обычный жёсткий диск):</strong> в поиске Windows наберите «дефрагментация» и запустите «Оптимизацию дисков». Это соберёт разбросанные кусочки файлов в единое целое, ускорив доступ.\n\n<strong>Для SSD (современный быстрый диск):</strong> дефрагментация не нужна, Windows сама делает TRIM. Но можно воспользоваться специальными утилитами для очистки реестра – смотрите раздел «Программы и железо».\n\nПосле этих шагов даже старый ноутбук сможет комфортно запускать <strong>CS2</strong> или <strong>Dota 2</strong> на минимальных настройках."
+          }
+        ],
+        advice: "💡 Если после всех шагов компьютер всё равно тормозит, вероятно, не хватает оперативной памяти или установлен старый HDD. Обратите внимание на статью «Как выбрать SSD» — замена диска даёт самый заметный прирост скорости.",
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        faq: [
+          {"q": "Безопасно ли отключать всё в автозагрузке?", "a": "Да. Вы отключаете только автоматический запуск, сама программа остаётся на месте. Если что-то перестанет работать, всегда можно включить обратно."},
+          {"q": "Как часто нужно чистить временные файлы?", "a": "Раз в 1–2 месяца достаточно. Если вы активно пользуетесь браузером и устанавливаете/удаляете программы, можно чаще."},
+          {"q": "Поможет ли это ускорить игры?", "a": "Косвенно да. Освободившееся место и оптимизированный реестр позволяют системе быстрее обрабатывать запросы, что может дать дополнительные 5–10 кадров в секунду."}
+        ]
+      },
+      programs: {
+        title: "⚡ Программы и железо для ускорения",
+        intro: "Я собрал проверенные инструменты и недорогие аксессуары, которые реально помогают. Ниже они разбиты на две категории – выбирайте, что нужно именно вам.",
+        software: [
+          {
+            program: "CCleaner Professional",
+            desc: "Глубокая очистка реестра, удаление временных файлов, управление автозагрузкой. Автоматически чистит браузеры и исправляет ошибки. Идеально для новичков – всё в один клик.",
+            price: "Бесплатный пробный период",
+            affiliate_key: "ccleaner",
+            btn_text: "Скачать"
+          },
+          {
+            program: "Kaspersky Antivirus",
+            desc: "Защита от вирусов и шпионского ПО. Фоновые угрозы часто загружают процессор – антивирус их устранит и не даст тормозить системе. Особенно полезно, если вы активно качаете моды для игр.",
+            price: "Пробный период 30 дней",
+            affiliate_key: "kaspersky",
+            btn_text: "Попробовать"
+          }
+        ],
+        hardware: [
+          {
+            product: "SSD-накопитель на 240 ГБ",
+            desc: "Замена старого HDD на SSD – самый мощный апгрейд. Скорость загрузки Windows и игр сокращается в 3-5 раз. Рекомендую всем, кто ещё сидит на обычном жёстком диске.",
+            price: "От 1500 ₽",
+            affiliate_key: "ssd_240gb",
+            btn_text: "Выбрать на Ситилинк"
+          },
+          {
+            product: "Коврик для мыши с RGB-подсветкой",
+            desc: "Яркий коврик не только украсит стол, но и улучшит скольжение мыши, что важно в шутерах вроде <strong>Valorant</strong> или <strong>Apex Legends</strong>. Дешёвый способ добавить стиля.",
+            price: "От 400 ₽",
+            affiliate_key: "joom_mousepad",
+            btn_text: "Смотреть на Joom"
+          },
+          {
+            product: "Охлаждающая подставка для ноутбука",
+            desc: "Перегрев снижает FPS. Подставка с вентиляторами помогает держать температуру в норме, особенно в требовательных играх типа <strong>Cyberpunk 2077</strong>. Подходит для ноутбуков до 17 дюймов.",
+            price: "От 800 ₽",
+            affiliate_key: "joom_stand",
+            btn_text: "Смотреть на Joom"
+          },
+          {
+            product: "Дешёвые аксессуары для ПК (кабели, переходники, стикеры)",
+            desc: "На Alik можно найти кучу мелочей для апгрейда и украшения вашего сетапа. Кликайте и выбирайте, что по душе.",
+            price: "От 50 ₽",
+            affiliate_key: "alik_accessories",
+            btn_text: "Перейти на Alik"
+          }
+        ],
+        disclaimer: "* Я получаю небольшую комиссию с продаж, но это не увеличивает вашу цену. Ссылки ведут на проверенные магазины.",
+        recommendation: "✨ Начните с бесплатного CCleaner и Kaspersky, чтобы почистить систему. Потом загляните в железо – SSD и коврик дадут самый заметный эффект.",
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        faq: [
+          {"q": "Какой антивирус лучше для игрового ПК?", "a": "Kaspersky или встроенный Защитник Windows + разовые сканеры. Главное — не ставить два одновременно."},
+          {"q": "Зачем нужен коврик с RGB?", "a": "Это не только красиво, но и улучшает контроль мыши за счёт однородной поверхности. Плюс поднимает настроение в тёмной комнате."},
+          {"q": "Можно ли купить SSD дешевле на Alik?", "a": "Да, но будьте осторожны с продавцами. Лучше брать проверенные бренды (Kingston, Crucial) в официальных магазинах."}
+        ]
+      },
+      ssd: {
+        title: "🖥️ Как выбрать SSD, чтобы ноутбук летал",
+        steps: [
+          {
+            strong: "1. Тип памяти: QLC, TLC или MLC?",
+            text: "Для повседневных задач и игр выбирайте <strong>TLC</strong> – он надёжный и быстрый. QLC дешевле, но медленнее и быстрее изнашивается. MLC для серверов, вам не нужен. Хороший TLC-диск прослужит 5–7 лет без проблем, даже если вы часто устанавливаете тяжёлые игры вроде <strong>Red Dead Redemption 2</strong>."
+          },
+          {
+            strong: "2. Объём: какой минимальный?",
+            text: "<strong>240 ГБ</strong> – минимум для Windows, браузера и пары любимых игр. Если планируете держать коллекцию из <strong>GTA V</strong>, <strong>Cyberpunk 2077</strong> и других хитов, берите от 500 ГБ. Бюджетный вариант: SSD 240 ГБ + старый HDD для файлов."
+          },
+          {
+            strong: "3. Форм-фактор: 2.5 дюйма или M.2?",
+            text: "<strong>M.2</strong> – маленькая плата, скорость до 3500 МБ/с, идеально для современных ноутбуков. <strong>2.5\" SATA</strong> – универсальный, подходит даже к старым моделям. Перед покупкой проверьте, какой разъём есть у вас (обычно написано в характеристиках ноутбука)."
+          },
+          {
+            strong: "4. Бюджетные бренды, которым можно доверять",
+            text: "<ul><li>Kingston (линейка A400) – дёшево и сердито</li><li>Crucial (BX500 или P3) – хорошее соотношение цены и скорости</li><li>Samsung (870 EVO для SATA, 980 для NVMe) – чуть дороже, но топовая надёжность</li></ul>\n\nГарантия 3–5 лет. После установки SSD вы удивитесь, как быстро загружается Windows и такие игры, как <strong>Starfield</strong>."
+          }
+        ],
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        product_btn: {"text": "Подобрать SSD на Ситилинк", "affiliate_key": "ssd_btn"},
+        faq: [
+          {"q": "Подойдёт ли SSD к моему старому ноутбуку?", "a": "Если ноутбуку меньше 10 лет, скорее всего да. Проверьте наличие разъёма SATA или M.2 в характеристиках."},
+          {"q": "Что лучше: SSD или больше оперативной памяти?", "a": "Если у вас 4 ГБ ОЗУ или меньше, сначала добавьте память. Если 8 ГБ и больше — SSD даст больший прирост скорости."},
+          {"q": "Сложно ли установить SSD самому?", "a": "Для настольного ПК — элементарно. Для ноутбука — чуть сложнее, но в интернете полно видеоинструкций."}
+        ]
+      },
+      monitor: {
+        title: "🖥️ Как выбрать монитор для игр и работы",
+        steps: [
+          {
+            strong: "1. Частота обновления: 60 Гц, 144 Гц или 240 Гц?",
+            text: "Для офисной работы и неторопливых игр хватит 60–75 Гц. Для динамичных шутеров (<strong>CS2</strong>, <strong>Valorant</strong>) берите 144 Гц и выше – движения станут плавнее, а реакция быстрее. 240 Гц оценят киберспортсмены, но разница с 144 Гц уже менее заметна."
+          },
+          {
+            strong: "2. Разрешение: Full HD, 2K или 4K?",
+            text: "Full HD (1920×1080) – универсальный стандарт, тянет даже недорогая видеокарта. 2K (2560×1440) даёт более чёткую картинку, но требует мощного железа. 4K – для профессионалов и тех, у кого топовая видеокарта (RTX 4080 и выше)."
+          },
+          {
+            strong: "3. Тип матрицы: IPS, VA или TN?",
+            text: "<ul><li><strong>IPS</strong> – яркие цвета, широкие углы обзора, лучший выбор для большинства.</li><li><strong>VA</strong> – глубокий чёрный, хорош для фильмов, но может смазывать в играх.</li><li><strong>TN</strong> – самый быстрый отклик, но блёклые цвета, подходит только для киберспорта.</li></ul>"
+          },
+          {
+            strong: "4. Время отклика и G-Sync/FreeSync",
+            text: "Время отклика 1–4 мс – хорошо для игр. Технологии G-Sync (NVIDIA) и FreeSync (AMD) синхронизируют частоту монитора с видеокартой, убирая разрывы и делая геймплей комфортным. Если видеокарта NVIDIA, ищите монитор с G-Sync Compatible."
+          }
+        ],
+        advice: "💡 Для универсального использования рекомендую 27-дюймовый IPS-монитор с 144 Гц и разрешением 2K — он отлично подходит и для игр, и для работы.",
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        product_btn: {"text": "Игровые мониторы на Ситилинк", "affiliate_key": "monitor_144hz"},
+        faq: [
+          {"q": "Какой монитор лучше для игр: 24 или 27 дюймов?", "a": "24\" дюйма – классика для киберспорта, 27\" – более универсальный и комфортный для глаз."},
+          {"q": "Нужен ли изогнутый монитор?", "a": "Это дело вкуса. Изогнутый экран слегка погружает в игру, но для работы с графикой лучше плоский."}
+        ]
+      },
+      windows11: {
+        title: "🪟 Секреты Windows 11: ускорение и удобство",
+        steps: [
+          {
+            strong: "1. Отключение визуальных эффектов",
+            text: "Windows 11 красива, но анимации и прозрачность нагружают слабые ПК. Зайдите в «Параметры» → «Специальные возможности» → «Визуальные эффекты» и отключите «Прозрачность» и «Анимацию окон». Это освободит ресурсы для игр вроде <strong>Hogwarts Legacy</strong>."
+          },
+          {
+            strong: "2. Оптимизация автозагрузки и фоновых приложений",
+            text: "Многие приложения прописываются в автозагрузку и работают в фоне. Нажмите <code>Ctrl+Shift+Esc</code> → вкладка «Автозагрузка» и отключите всё лишнее. Затем в «Параметры» → «Приложения» → «Автозагрузка» проверьте ещё раз."
+          },
+          {
+            strong: "3. Настройка электропитания для максимальной производительности",
+            text: "Откройте «Панель управления» → «Электропитание» и выберите схему «Высокая производительность». Если её нет, нажмите «Создать схему» и выберите «Высокая производительность». Это уберёт ограничения процессора и видеокарты."
+          },
+          {
+            strong: "4. Очистка от мусора и временных файлов",
+            text: "Используйте встроенную утилиту «Очистка диска» (<code>cleanmgr</code>) и регулярно удаляйте временные файлы. Дополнительно можно использовать бесплатный CCleaner для более глубокой очистки реестра."
+          }
+        ],
+        advice: "💡 После этих настроек Windows 11 будет работать быстрее, а игры перестанут подтормаживать даже на не самом новом железе.",
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        faq: [
+          {"q": "Стоит ли обновляться до Windows 11 ради скорости?", "a": "Если у вас современный ПК (вышел после 2020 года), то да – оптимизация стала лучше. На старых машинах разницы почти нет."},
+          {"q": "Какие службы можно отключить в Windows 11?", "a": "Диагностику, печать (если нет принтера), Xbox Live (если не играете). Но будьте осторожны, отключайте только то, в чём уверены."}
+        ]
+      },
+      virus: {
+        title: "🛡️ Чистка от вирусов: возвращаем производительность",
+        steps: [
+          {
+            strong: "1. Проверка встроенными средствами",
+            text: "Откройте «Безопасность Windows» (Параметры → Обновление и безопасность) и запустите полное сканирование. Часто вирусы маскируются под системные процессы – загляните в «Диспетчер задач» и поищите подозрительные названия. В онлайн-играх вроде <strong>World of Tanks</strong> или <strong>Fortnite</strong> вирусы могут воровать аккаунты, так что проверка обязательна."
+          },
+          {
+            strong: "2. Безопасный режим и антивирусные сканеры",
+            text: "Загрузитесь в безопасном режиме (удерживайте Shift при перезагрузке). Там запустите бесплатный сканер <strong>Dr.Web CureIt!</strong> или <strong>Kaspersky</strong>. Они не конфликтуют с основным антивирусом и находят даже скрытые угрозы."
+          },
+          {
+            strong: "3. Защита в реальном времени",
+            text: "Установите надёжный антивирус (например, Kaspersky) – он будет блокировать угрозы на лету и не даст замедлить систему. Особенно актуально, если вы любите качать моды для <strong>Skyrim</strong> или <strong>The Sims 4</strong> с непроверенных сайтов."
+          }
+        ],
+        warning: "⚠️ Никогда не устанавливайте два постоянных антивируса одновременно – они будут конфликтовать, замедляя систему ещё сильнее. Используйте один основной и разовые сканеры по необходимости.",
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        product_btn: {"text": "Попробовать Kaspersky бесплатно", "affiliate_key": "kaspersky"},
+        faq: [
+          {"q": "Можно ли обойтись без антивируса?", "a": "Встроенного Защитника Windows достаточно для повседневного использования, если не посещаете сомнительные сайты. Но для спокойствия лучше иметь надёжный антивирус."},
+          {"q": "Как часто надо проверять компьютер на вирусы?", "a": "Раз в месяц полным сканированием. Плюс внеочередные проверки после установки пиратского софта или модов."},
+          {"q": "Вирусы действительно могут замедлить ПК?", "a": "Да, некоторые вредоносные программы майнят криптовалюту в фоне, загружая процессор на 100%."}
+        ]
+      },
+      gaming: {
+        title: "🎮 Максимальный FPS без лагов",
+        steps: [
+          {
+            strong: "1. Настройки Windows для игр",
+            text: "Включите «Игровой режим» (<code>Win + G</code> → Настройки). Отключите визуальные эффекты: «Свойства системы» → «Дополнительно» → «Быстродействие» → «Обеспечить наилучшее быстродействие». Отключите фоновые приложения. Эти простые шаги особенно заметны в требовательных новинках вроде <strong>Cyberpunk 2077</strong> или <strong>Alan Wake 2</strong> – лишние 5–10 кадров никогда не помешают."
+          },
+          {
+            strong: "2. Настройка видеокарты",
+            text: "<strong>NVIDIA:</strong> Панель управления → «Регулировка настроек изображения» → «Производительность».\n<strong>AMD:</strong> Radeon Software → «Глобальные настройки графики» → «Производительность».\nОтключите вертикальную синхронизацию (VSync) в играх, если FPS низкий. Для <strong>Hogwarts Legacy</strong> и других проектов на Unreal Engine это даёт наибольший прирост плавности."
+          },
+          {
+            strong: "3. Охлаждение и пыль",
+            text: "Перегрев приводит к троттлингу (снижению частот). Раз в полгода чистите ноутбук от пыли, используйте охлаждающую подставку. Если процессор выше 85°C, пора менять термопасту. Даже в <strong>Baldur's Gate 3</strong> при высоких настройках система может нагреваться так, что частоты падают на 15–20%."
+          },
+          {
+            strong: "4. Обновление драйверов",
+            text: "Устаревшие драйверы – частая причина низкой производительности. Скачайте последние версии с официальных сайтов:\n<ul><li><a href='https://www.nvidia.com/ru-ru/drivers/' target='_blank' rel='noopener' style='color:#ff6b35;'>NVIDIA (для GeForce)</a></li><li><a href='https://www.amd.com/ru/support' target='_blank' rel='noopener' style='color:#ff6b35;'>AMD (Radeon, Ryzen)</a></li><li><a href='https://www.intel.com/content/www/ru/ru/download-center/home.html' target='_blank' rel='noopener' style='color:#ff6b35;'>Intel (встроенная графика, чипсет)</a></li></ul>\nТакже установите GeForce Experience или Radeon Software для автоматического обновления. Это гарантирует, что свежий патч для <strong>Starfield</strong> не застанет вас врасплох."
+          }
+        ],
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        product_btn: {"text": "Игровые SSD со скидкой", "affiliate_key": "gaming_ssd"},
+        faq: [
+          {"q": "Почему FPS плавает даже на мощном ПК?", "a": "Часто виноваты фоновые процессы, перегрев или неоптимизированные настройки графики. Пройдите шаги выше."},
+          {"q": "Влияет ли монитор на FPS?", "a": "Косвенно: если монитор с высокой частотой обновления (144 Гц), вы будете замечать больше кадров, но сам FPS зависит от железа."},
+          {"q": "Можно ли играть на встроенной графике?", "a": "В нетребовательные игры (CS2, Dota 2, Minecraft) – да. Для AAA-проектов нужна дискретная видеокарта."}
+        ]
+      },
+      build: {
+        title: "🔧 Как собрать ПК самостоятельно: пошаговая инструкция",
+        steps: [
+          {
+            strong: "1. Выбор деталей – из чего состоит компьютер",
+            text: "Компьютер собирается из нескольких основных частей. Вот что вам понадобится:\n<ul>\n<li><span class=\"tooltip-term\" data-tooltip=\"Центральный процессор – мозг компьютера. Основные производители: Intel (Core i3/i5/i7) и AMD (Ryzen 3/5/7).\">Процессор</span> и кулер для его охлаждения</li>\n<li><span class=\"tooltip-term\" data-tooltip=\"Большая плата, к которой подключаются все остальные детали.\">Материнская плата</span></li>\n<li><span class=\"tooltip-term\" data-tooltip=\"Видеокарта обрабатывает графику. Для игр обязательна. NVIDIA GeForce и AMD Radeon – основные бренды.\">Видеокарта</span> (можно взять без неё, если процессор со встроенной графикой, но для игр она нужна)</li>\n<li><span class=\"tooltip-term\" data-tooltip=\"Временная память, где хранятся запущенные программы. Чем больше, тем лучше: 8 ГБ – минимум, 16 ГБ – комфорт.\">Оперативная память</span> (RAM)</li>\n<li>SSD или жёсткий диск для хранения данных</li>\n<li>Блок питания (подаёт электричество)</li>\n<li>Корпус, куда всё это помещается</li>\n</ul>\nПроверьте совместимость на сайте производителя материнской платы или в специальных сервисах (например, PCPartPicker). Для игр уровня <strong>CS2</strong> или <strong>Dota 2</strong> подойдёт недорогой процессор Core i5/Ryzen 5 и видеокарта GeForce RTX 3060."
+          },
+          {
+            strong: "2. Установка процессора и кулера",
+            text: "<strong>Аккуратно!</strong> Найдите на материнской плате <span class=\"tooltip-term\" data-tooltip=\"Разъём для процессора с рычажком.\">сокет</span>. Поднимите рычаг, совместите метки (обычно треугольник) и опустите процессор без усилий. Закройте рычаг.\n\nТеперь нанесите на процессор маленькую каплю <span class=\"tooltip-term\" data-tooltip=\"Специальная паста, которая улучшает передачу тепла от процессора к кулеру. Обычно идёт в комплекте с кулером.\">термопасты</span> (размером с горошину). Установите кулер и подключите его кабель к разъёму на материнской плате (обычно подписан CPU_FAN)."
+          },
+          {
+            strong: "3. Установка оперативной памяти и SSD",
+            text: "Планки памяти вставляются в длинные разъёмы на материнской плате. Если планок две, обычно их ставят во 2-й и 4-й слот (смотрите инструкцию). Надавите до щелчка.\n\n<span class=\"tooltip-term\" data-tooltip=\"Маленькая платка для скоростного SSD. Вставляется прямо в материнскую плату.\">SSD M.2</span> вставляется под углом и фиксируется винтиком (обычно есть на материнской плате). Обычный <span class=\"tooltip-term\" data-tooltip=\"Прямоугольный диск, как у ноутбуков, подключается кабелем.\">SATA SSD</span> подключается кабелем к материнской плате и блоку питания."
+          },
+          {
+            strong: "4. Установка видеокарты и блока питания",
+            text: "Найдите на материнской плате верхний длинный разъём <span class=\"tooltip-term\" data-tooltip=\"Слот для видеокарты, обычно самый верхний. Обеспечивает максимальную скорость.\">PCIe x16</span>. Отогните защёлку, вставьте видеокарту и надавите до щелчка. Закрепите её винтиками на корпусе.\n\nБлок питания закрепите в корпусе, проложите кабели и подключите:\n<ul>\n<li>Самый широкий кабель (24 pin) – к материнской плате</li>\n<li>Кабель 8 pin (или 4+4) – к разъёму питания процессора (CPU)</li>\n<li>Кабель к видеокарте (если есть)</li>\n<li>Тонкие кабели – к SSD и жёстким дискам</li>\n</ul>"
+          },
+          {
+            strong: "5. Первый запуск и установка Windows",
+            text: "Подключите монитор, клавиатуру и мышь. Включите кнопку на блоке питания, затем кнопку включения на корпусе. Если всё собрано правильно, на экране появится <span class=\"tooltip-term\" data-tooltip=\"Базовая система ввода-вывода. Здесь можно настроить порядок загрузки и проверить, что все устройства видны.\">BIOS</span>.\n\nТеперь нужно установить Windows. Вам понадобится флешка (не менее 8 ГБ) и доступ к интернету. Скачайте официальный образ Windows с сайта Microsoft, создайте загрузочную флешку (инструкций в интернете полно). Вставьте флешку, перезагрузите ПК и следуйте подсказкам на экране."
+          }
+        ],
+        advice: "💡 Боитесь ошибиться? Я подготовил платный гайд «Сборка ПК без ошибок» с подробными фото, чек-листом и типовыми ошибками новичков. Поддержите проект и получите эксклюзив!",
+        donate_url: "https://boosty.to/igrip/donate",
+        help_text: "Не нашли ответа? <a href='#' class='help-link' onclick='scrollToForm(); return false;'>Опишите проблему в форме ниже</a> — я отвечу лично.",
+        product_btn: {"text": "Купить гайд «Сборка ПК без ошибок» (300 ₽)", "affiliate_key": "build_guide"},
+        faq: [
+          {"q": "Можно ли собрать ПК без помощи мастера?", "a": "Да! Тысячи людей собирают свой первый ПК по инструкциям. Главное – не торопиться и проверять совместимость."},
+          {"q": "Что делать, если компьютер не включается?", "a": "Спокойствие! Проверьте подключение кнопки питания, кабели блока питания и правильно ли вставлена память. Чаще всего проблема в этом."},
+          {"q": "Нужен ли дорогой корпус?", "a": "Для начала подойдёт недорогой корпус с хорошей вентиляцией. Главное – чтобы все детали поместились."}
+        ]
+      }
+    },
+    contact: {
+      title: "📩 Не нашли ответа?",
+      subtitle: "Опишите проблему – я отвечу лично в течение дня.",
+      form_action: "https://formspree.io/f/xgoqbbvl",
+      telegram_text: ""
+    }
+  };
+
+  window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800));
+
+  (function() {
+    const links = document.querySelectorAll('link[rel*="icon"]');
+    links.forEach(l => l.remove());
+    const newFavicon = document.createElement('link');
+    newFavicon.rel = 'icon';
+    newFavicon.href = 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>';
+    document.head.appendChild(newFavicon);
+  })();
+
+  function acceptCookies() { localStorage.setItem('cookie_accepted','true'); document.getElementById('cookieConsent').classList.add('hidden'); }
+  if (localStorage.getItem('cookie_accepted') === 'true') document.getElementById('cookieConsent').classList.add('hidden');
+
+  const CHANNEL_NAME = 'uskor-pc-online';
+  const onlineChannel = new BroadcastChannel(CHANNEL_NAME);
+  let sessionId = Date.now() + Math.random();
+  const activeSessions = new Set(); activeSessions.add(sessionId);
+  function updateOnlineDisplay() { onlineChannel.postMessage({type:'ping',id:sessionId}); }
+  onlineChannel.onmessage = (e) => { if(e.data.type==='pong') activeSessions.add(e.data.id); else if(e.data.type==='bye') activeSessions.delete(e.data.id); };
+  setInterval(() => { activeSessions.clear(); activeSessions.add(sessionId); updateOnlineDisplay(); setTimeout(() => { document.getElementById('online-count').textContent = activeSessions.size; }, 300); }, 5000);
+  window.addEventListener('beforeunload', () => onlineChannel.postMessage({type:'bye',id:sessionId}));
+  updateOnlineDisplay();
+
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('readingProgress').style.width = scrolled + '%';
+    const btn = document.getElementById('scrollTopBtn');
+    if (btn) {
+      btn.style.background = `conic-gradient(#ff6b35 ${scrolled * 3.6}deg, #f0f0f0 ${scrolled * 3.6}deg)`;
+    }
+    const floatDonate = document.getElementById('floatingDonate');
+    if (floatDonate) {
+      floatDonate.classList.toggle('visible', scrolled > 60);
+    }
+  });
+
+  function setDarkTheme(isDark) {
+    if (isDark) {
+      document.body.classList.add('dark');
+      document.getElementById('themeToggleBtn').textContent = '☀️ Светлый режим';
+    } else {
+      document.body.classList.remove('dark');
+      document.getElementById('themeToggleBtn').textContent = '🌙 Ночной режим';
+    }
+    localStorage.setItem('dark_theme', isDark);
+  }
+  const themeToggle = document.getElementById('themeToggleBtn');
+  if (localStorage.getItem('dark_theme') === 'true') { setDarkTheme(true); } else { setDarkTheme(false); }
+  themeToggle.addEventListener('click', () => { const isDark = !document.body.classList.contains('dark'); setDarkTheme(isDark); });
+
+  let kittyInterval;
+  function startKittyAnimation() {
+    const el = document.getElementById('kitty-container');
+    if (!el) return;
+    el.style.display = 'block';
+    let step = 0;
+    kittyInterval = setInterval(() => { el.textContent = step % 2 === 0 ? '🐈' : '🐈‍⬛'; step++; }, 400);
+  }
+  function stopKittyAnimation() {
+    const el = document.getElementById('kitty-container');
+    if (el) el.style.display = 'none';
+    if (kittyInterval) { clearInterval(kittyInterval); kittyInterval = null; }
+  }
+
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    document.querySelectorAll('.decor-spot').forEach((spot, index) => {
+      const speed = (index + 1) * 0.4;
+      spot.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+    });
+  });
+
+  // Умное позиционирование тултипов
+  function positionTooltip(term) {
+    const tip = term.querySelector('::after');
+    // Работаем через создание временного элемента для расчётов
+    const rect = term.getBoundingClientRect();
+    const tipWidth = 260; // max-width из CSS
+    const tipHeight = 60; // примерная высота
+    const spaceAbove = rect.top;
+    const spaceBelow = window.innerHeight - rect.bottom;
+
+    // Удаляем класс, чтобы сбросить стили
+    term.classList.remove('tooltip-visible');
+    
+    // Принудительно показываем псевдоэлемент, чтобы измерить
+    term.classList.add('tooltip-visible');
+    const pseudoStyle = window.getComputedStyle(term, '::after');
+    const actualWidth = parseInt(pseudoStyle.width) || tipWidth;
+    const actualHeight = parseInt(pseudoStyle.height) || tipHeight;
+
+    // Определяем сторону: сверху или снизу
+    if (spaceAbove > actualHeight + 10 || spaceBelow < actualHeight + 10) {
+      term.style.setProperty('--tooltip-bottom', 'auto');
+      term.style.setProperty('--tooltip-top', 'calc(100% + 6px)');
+    } else {
+      term.style.setProperty('--tooltip-top', 'auto');
+      term.style.setProperty('--tooltip-bottom', 'calc(100% + 6px)');
+    }
+
+    // Горизонтальное смещение, чтобы не вылезать за экран
+    let leftOffset = rect.left + rect.width/2;
+    let translateX = '-50%';
+    if (leftOffset - actualWidth/2 < 10) {
+      leftOffset = 10 + actualWidth/2;
+      translateX = '0';
+    } else if (leftOffset + actualWidth/2 > window.innerWidth - 10) {
+      leftOffset = window.innerWidth - 10 - actualWidth/2;
+      translateX = '0';
+    }
+
+    term.style.setProperty('--tooltip-left', leftOffset + 'px');
+    term.style.setProperty('--tooltip-translate', translateX);
+  }
+
+  // Навешиваем обработчики на все .tooltip-term
+  document.addEventListener('mouseover', function(e) {
+    const target = e.target.closest('.tooltip-term');
+    if (target) {
+      positionTooltip(target);
+      target.classList.add('tooltip-visible');
+    }
+  });
+
+  document.addEventListener('mouseout', function(e) {
+    const target = e.target.closest('.tooltip-term');
+    if (target) {
+      target.classList.remove('tooltip-visible');
+    }
+  });
+
+  function showSpinner(button) {
+    const spinner = button.querySelector('.spinner');
+    if (spinner) {
+      spinner.style.display = 'inline-block';
+      setTimeout(() => { spinner.style.display = 'none'; }, 1000);
+    }
+  }
+
+  function trackAffiliateClick(affiliateKey) {
+    if (!affiliateKey) return;
+    let stats = {};
+    try { stats = JSON.parse(localStorage.getItem('affiliate_clicks') || '{}'); } catch(e) {}
+    stats[affiliateKey] = (stats[affiliateKey] || 0) + 1;
+    localStorage.setItem('affiliate_clicks', JSON.stringify(stats));
+    updateAffiliateStats();
+  }
+
+  function updateAffiliateStats() {
+    const list = document.getElementById('affiliateList');
+    if (!list) return;
+    let stats = {};
+    try { stats = JSON.parse(localStorage.getItem('affiliate_clicks') || '{}'); } catch(e) {}
+    const entries = Object.entries(stats);
+    if (entries.length === 0) {
+      list.innerHTML = '<li>Нет кликов</li>';
+      return;
+    }
+    list.innerHTML = entries.map(([key, count]) => `<li><span>${key}</span> <strong>${count}</strong></li>`).join('');
+  }
+
+  function getAffiliateLink(key) { return (SITE_DATA.affiliate && SITE_DATA.affiliate[key] && SITE_DATA.affiliate[key]!=='#') ? SITE_DATA.affiliate[key] : '#'; }
+  function formatText(text) { if(!text) return ''; return text.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g,'<br>')}</p>`).join(''); }
+
+  function toggleAccordion(header) { header.classList.toggle('active'); header.nextElementSibling.classList.toggle('open'); const box = header.closest('.content-box'); if(box) updateCollapseAllButton(box); }
+  function updateCollapseAllButton(container) { const btn = container.querySelector('.collapse-all-btn'); if(!btn) return; const openCount = container.querySelectorAll('.accordion-body.open').length; btn.classList.toggle('visible', openCount >= 2); }
+  document.addEventListener('click', e => { if(e.target.classList.contains('collapse-all-btn')) { const box = e.target.closest('.content-box'); if(!box) return; box.querySelectorAll('.accordion-header.active').forEach(h => h.classList.remove('active')); box.querySelectorAll('.accordion-body.open').forEach(b => b.classList.remove('open')); updateCollapseAllButton(box); } });
+
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('faq-question')) {
+      const item = e.target.closest('.faq-item');
+      if (item) item.classList.toggle('open');
+    }
+  });
+
+  // Счётчик просмотров статей
+  function incrementArticleViews(articleId) {
+    let views = {};
+    try { views = JSON.parse(localStorage.getItem('article_views') || '{}'); } catch(e) {}
+    views[articleId] = (views[articleId] || 0) + 1;
+    localStorage.setItem('article_views', JSON.stringify(views));
+    updateViewsList();
+  }
+
+  function updateViewsList() {
+    const list = document.getElementById('viewsList');
+    if (!list) return;
+    let views = {};
+    try { views = JSON.parse(localStorage.getItem('article_views') || '{}'); } catch(e) {}
+    const items = Object.entries(views).sort((a,b) => b[1] - a[1]);
+    if (items.length === 0) {
+      list.innerHTML = '<li>Нет просмотров</li>';
+      return;
+    }
+    list.innerHTML = items.map(([id, count]) => `<li style="display:flex;justify-content:space-between;">${id} <strong>${count}</strong></li>`).join('');
+  }
+
+  // Кнопка "Помогло!"
+  function initHelpfulButtons() {
+    document.querySelectorAll('.helpful-btn').forEach(btn => {
+      const articleId = btn.getAttribute('data-article');
+      const countSpan = btn.querySelector('.helpful-count');
+      const savedCount = localStorage.getItem('helpful_' + articleId) || 0;
+      if (countSpan) countSpan.textContent = savedCount;
+      btn.addEventListener('click', function() {
+        if (this.classList.contains('active')) return;
+        const newCount = parseInt(localStorage.getItem('helpful_' + articleId) || 0) + 1;
+        localStorage.setItem('helpful_' + articleId, newCount);
+        this.classList.add('active');
+        if (countSpan) {
+          countSpan.style.transform = 'scale(1.4)';
+          countSpan.textContent = newCount;
+          setTimeout(() => { countSpan.style.transform = 'scale(1)'; }, 300);
+        }
+      });
+    });
+  }
+
+  // Кнопка печати
+  function printArticle(articleId) {
+    const box = document.getElementById(articleId);
+    if (!box) return;
+    const original = document.body.innerHTML;
+    const printContent = box.cloneNode(true);
+    document.body.innerHTML = printContent.outerHTML;
+    window.print();
+    document.body.innerHTML = original;
+    location.reload();
+  }
+
+  function renderSite() {
+    const app = document.getElementById('app');
+    app.innerHTML = `
+      <div class="hero">
+        <h1 id="hero-title">${SITE_DATA.hero.title}</h1>
+        <p>${SITE_DATA.hero.subtitle}</p>
+        <div class="btn-group" id="nav-buttons">
+          ${SITE_DATA.buttons.map(btn => `<button class="nav-btn" data-target="${btn.id}"><span>${btn.icon}</span> ${btn.label}</button>`).join('')}
+          <a href="/guide" class="nav-btn guide-btn"><span>📘</span> Платный гайд</a>
+        </div>
+      </div>
+      <div id="content-container">
+        ${Object.keys(SITE_DATA.articles).map(id => renderArticle(id, SITE_DATA.articles[id])).join('')}
+      </div>
+      <div class="affiliate-banner">
+        <a target="_blank" rel="nofollow" href="https://rzekl.com/g/3nvsyfsfjdf10c2e97fc16525dc3e8/?i=4"><img src="https://ad.admitad.com/b/3nvsyfsfjdf10c2e97fc16525dc3e8/" alt="AliExpress WW"/></a>
+      </div>
+      <div class="contact-form">
+        <h2>${SITE_DATA.contact.title}</h2>
+        <p>${SITE_DATA.contact.subtitle}</p>
+        <form id="help-form" action="${SITE_DATA.contact.form_action}" method="POST">
+          <div class="form-group"><label>Ваше имя</label><input type="text" name="name" placeholder="Иван" required></div>
+          <div class="form-group"><label>Email или Telegram</label><input type="text" name="contact" placeholder="куда ответить" required></div>
+          <div class="form-group"><label>Опишите проблему</label><textarea name="message" placeholder="Компьютер тормозит при запуске Photoshop..." required></textarea></div>
+          <button type="submit" class="submit-btn">Отправить заявку</button>
+        </form>
+      </div>
+      <div class="site-footer">
+        © 2026 <span>Ускорь ПК</span> · <span id="footer-trigger">Сделано с заботой о вашем компьютере</span> · <a href="/privacy">Политика конфиденциальности</a>
+      </div>
+    `;
+
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitle) {
+      const text = heroTitle.textContent;
+      heroTitle.textContent = '';
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        heroTitle.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(typeInterval);
+      }, 50);
+    }
+
+    document.querySelectorAll('.nav-btn[data-target]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        document.querySelectorAll('.content-box').forEach(box => box.classList.remove('active'));
+        const targetBox = document.getElementById(targetId);
+        if(targetBox) {
+          targetBox.classList.add('active');
+          targetBox.scrollIntoView({behavior:'smooth',block:'start'});
+          incrementArticleViews(targetId);
+        }
+      });
+    });
+    const firstBtn = document.querySelector('.nav-btn[data-target]');
+    if(firstBtn) {
+      firstBtn.classList.add('active');
+      const firstBox = document.getElementById(firstBtn.getAttribute('data-target'));
+      if(firstBox) {
+        firstBox.classList.add('active');
+        incrementArticleViews(firstBtn.getAttribute('data-target'));
+      }
+    }
+
+    document.querySelectorAll('.affiliate-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const key = this.getAttribute('data-affiliate');
+        if (key) trackAffiliateClick(key);
+        showSpinner(this);
+      });
+      if (!link.querySelector('.spinner')) {
+        const spinner = document.createElement('span');
+        spinner.className = 'spinner';
+        link.appendChild(spinner);
+      }
+    });
+
+    document.querySelectorAll('.content-box').forEach(b => updateCollapseAllButton(b));
+    initHelpfulButtons();
+    updateViewsList();
+    initAdminPanel();
+    initScrollTopButton();
+    updatePageCounter();
+    updateAdminTime();
+    updateAffiliateStats();
+  }
+
+  function renderArticle(id, article) {
+    let stepsHtml = article.steps ? `
+      <button class="collapse-all-btn">🔽 Свернуть всё</button>
+      ${article.steps.map((step, index) => `
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">${step.strong}</div>
+          <div class="accordion-body">${formatText(step.text)}</div>
+        </div>
+      `).join('')}
+    ` : '';
+    const adviceHtml = article.advice ? `<div class="advice-block"><strong>💡 Совет</strong><br>${article.advice}</div>` : '';
+    const warningHtml = article.warning ? `<div class="warning-block"><strong>⚠️ Важно</strong><br>${article.warning}</div>` : '';
+    const recommendationHtml = article.recommendation ? `<div style="margin-top:25px; background:#fff5f0; padding:20px; border-radius:12px;"><strong>${article.recommendation}</strong></div>` : '';
+    
+    let tablesHtml = '';
+    if (article.software) {
+      tablesHtml += `<h3 style="margin-top:25px;">🛠️ Программы</h3>
+        <div class="table-wrapper"><table class="clean-table"><tr><th>Программа</th><th>Что делает</th><th>Цена</th><th>Ссылка</th></tr>
+        ${article.software.map(row => `<tr><td>${row.program}</td><td>${row.desc}</td><td>${row.price}</td><td><a href="${getAffiliateLink(row.affiliate_key)}" class="btn-tilda affiliate-link" data-affiliate="${row.affiliate_key}" target="_blank" title="Перейти к программе">${row.btn_text}</a></td></tr>`).join('')}
+        </table></div>`;
+    }
+    if (article.hardware) {
+      tablesHtml += `<h3 style="margin-top:25px;">💻 Железо и аксессуары</h3>
+        <div class="table-wrapper"><table class="clean-table"><tr><th>Товар</th><th>Описание</th><th>Цена</th><th>Ссылка</th></tr>
+        ${article.hardware.map(row => `<tr><td>${row.product}</td><td>${row.desc}</td><td>${row.price}</td><td><a href="${getAffiliateLink(row.affiliate_key)}" class="btn-tilda affiliate-link" data-affiliate="${row.affiliate_key}" target="_blank" title="Посмотреть товар">${row.btn_text}</a></td></tr>`).join('')}
+        </table></div>`;
+    }
+    if (article.table) {
+      tablesHtml += `<div class="table-wrapper"><table class="clean-table"><tr><th>Программа</th><th>Что делает</th><th>Цена</th><th>Ссылка</th></tr>
+        ${article.table.map(row => `<tr><td>${row.program}</td><td>${row.desc}</td><td>${row.price}</td><td><a href="${getAffiliateLink(row.affiliate_key)}" class="btn-tilda affiliate-link" data-affiliate="${row.affiliate_key}" target="_blank" title="Перейти">${row.btn_text}</a></td></tr>`).join('')}
+        </table></div>`;
+    }
+
+    const productBtnHtml = article.product_btn ? `<a href="${getAffiliateLink(article.product_btn.affiliate_key)}" class="btn-tilda affiliate-link" data-affiliate="${article.product_btn.affiliate_key}" style="margin-top:20px;" target="_blank" title="Подробнее">${article.product_btn.text}</a>` : '';
+    const donateHtml = article.donate_url ? `<a href="${article.donate_url}" class="donate-link" target="_blank">☕ Помогло? Угости автора кофе</a>` : '';
+    const helpHtml = article.help_text ? `<div style="margin-top:25px; background:#f0f8ff; padding:20px; border-radius:12px; text-align:center;"><strong>🤔 Остались вопросы?</strong><br><span style="color:#555;">${article.help_text}</span></div>` : '';
+    const shareUrl = encodeURIComponent('https://uskor-pc.tilda.ws');
+    const shareTitle = encodeURIComponent(article.title);
+    const shareHtml = `<div class="share-buttons"><a href="https://t.me/share/url?url=${shareUrl}&text=${shareTitle}" target="_blank" class="share-btn"><span>📨</span> Telegram</a><a href="https://vk.com/share.php?url=${shareUrl}&title=${shareTitle}" target="_blank" class="share-btn"><span>📘</span> ВКонтакте</a><a href="https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}" target="_blank" class="share-btn"><span>🐦</span> X</a></div>`;
+
+    let faqHtml = '';
+    if (article.faq) {
+      faqHtml = `<div class="faq-section"><h3>❓ Часто задаваемые вопросы</h3>`;
+      article.faq.forEach(item => {
+        faqHtml += `<div class="faq-item"><div class="faq-question">${item.q}</div><div class="faq-answer">${item.a}</div></div>`;
+      });
+      faqHtml += `</div>`;
+    }
+
+    const helpfulHtml = `<button class="helpful-btn" data-article="${id}">👍 <span class="helpful-count">0</span></button>`;
+    const printHtml = `<button class="print-btn" onclick="printArticle('${id}')">🖨️</button>`;
+
+    return `<div id="${id}" class="content-box"><h2>${article.title}</h2>${article.intro?`<p style="margin-bottom:20px; color:#555;">${article.intro}</p>`:''}${stepsHtml}${adviceHtml}${warningHtml}${recommendationHtml}${tablesHtml}${productBtnHtml}${donateHtml}${helpHtml}${faqHtml}${shareHtml}${helpfulHtml}${printHtml}</div>`;
+  }
+
+  function initScrollTopButton() { const btn = document.getElementById('scrollTopBtn'); window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 500)); }
+  function initAdminPanel() {
+    const trigger = document.getElementById('footer-trigger');
+    if (!trigger) return;
+    let clicks = 0, timer;
+    trigger.addEventListener('click', () => {
+      clicks++;
+      if(clicks === 1) timer = setTimeout(() => clicks = 0, 800);
+      if(clicks === 3) {
+        clearTimeout(timer); clicks = 0;
+        const panel = document.getElementById('adminPanel');
+        panel.classList.toggle('show');
+        if(panel.classList.contains('show')) { updateAdminTime(); startKittyAnimation(); updateAffiliateStats(); updateViewsList(); }
+        else stopKittyAnimation();
+      }
+    });
+  }
+  function updateAdminTime() { document.getElementById('admin-time').textContent = '🕒 ' + new Date().toLocaleTimeString('ru-RU'); }
+  function updatePageCounter() { const el = document.getElementById('page-count'); if(!el) return; let count = localStorage.getItem('site_page_views'); count = count ? parseInt(count) + 1 : 1; localStorage.setItem('site_page_views', count); el.textContent = count; }
+
+  renderSite();
+</script>
